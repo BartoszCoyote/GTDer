@@ -2,9 +2,9 @@ package pl.jedynakbartosz.backend.task;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import pl.jedynakbartosz.backend.project.Project;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,11 +14,10 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID")
     private Long id;
 
-    @NotNull
-    @Column(name = "NAME", nullable = false, length = 250)
+    @Column(name = "NAME")
     private String name;
 
     @Column(name = "DATE_CREATED")
@@ -26,4 +25,18 @@ public class Task {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "PROJECT_ID", referencedColumnName = "id")
+    private Project project;
+
+
+    public Task() {
+
+    }
+
+    public Task(String name, Date createDate, Project project) {
+        this.name = name;
+        this.createDate = createDate;
+        this.project = project;
+    }
 }

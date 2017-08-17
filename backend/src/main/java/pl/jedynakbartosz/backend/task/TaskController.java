@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class TaskController {
     TaskService taskService;
 
 
-    @GetMapping(value = "/tasks")
+    @GetMapping(value = "/tasks", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Task> registration() {
         return taskService.findAll();
 
@@ -35,8 +36,8 @@ public class TaskController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/task")
-    public void addTask(Task task) {
+    @PostMapping(value = "/task", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void addTask(@RequestBody Task task) {
         taskService.save(task);
 
     }
