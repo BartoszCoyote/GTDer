@@ -1,15 +1,17 @@
 package pl.jedynakbartosz.backend.task;
 
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class TaskController {
 
@@ -18,28 +20,26 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-
-    @GetMapping(value = "/tasks", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Task> registration() {
-        return taskService.findAll();
-
-    }
-
-    @DeleteMapping("/task/{id}")
-    void delete(@PathVariable("id") Long id) {
-        taskService.delete(id);
-    }
-
-    @GetMapping(value = "/task/{id}")
-    public Task findOneTask(@PathVariable Long id) {
-        return taskService.find(id);
-    }
-
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/task", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void addTask(@RequestBody Task task) {
-        taskService.save(task);
+    TaskDto create(@Valid @RequestBody TaskDto dto) {
+        return taskService.create(dto);
+    }
 
+    @PutMapping("/{id}")
+    TaskDto update(@PathVariable("id") String id, @Valid @RequestBody TaskDto dto) {
+        return taskService.update(id, dto);
+    }
+
+    @GetMapping
+    List<TaskDto> findAll() {
+        return taskService.findALl();
+    }
+
+
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable("id") String id) {
+        taskService.delete(id);
     }
 
 
