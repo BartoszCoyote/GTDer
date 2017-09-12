@@ -2,8 +2,7 @@ language: java
 
 sudo: required
 
-jdk:
-    - oraclejdk8
+
     
 before_install: cd backend
 
@@ -11,5 +10,14 @@ after_success:
 - bash <(curl -s https://codecov.io/bash)
 - python <(curl -s https://raw.githubusercontent.com/TouK/sputnik-ci/master/sputnik-ci.py)
 
-script: mvn install
+jdk:
+- oraclejdk8
+# would just use default install/script but the ./mvnw script errors on travis
+# obviously this only works for maven builds right now...
+install:
+- mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+script:
+- mvn test
+
+
 
