@@ -2,8 +2,6 @@ language: java
 
 sudo: required
 
-
-    
 before_install: cd backend
 
 after_success:
