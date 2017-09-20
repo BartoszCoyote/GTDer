@@ -35,7 +35,6 @@ public class TaskService {
     public TaskDto update(String id, TaskDto dto) {
         Task task = taskRepository.findById(id);
         task.setDescription(dto.getDescription());
-        task.setCreateDate(dto.getCreateDate());
         task.setName(dto.getName());
         return taskMapper.map(task);
 

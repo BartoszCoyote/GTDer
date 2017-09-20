@@ -7,11 +7,9 @@ public class TaskMapper {
 
     TaskDto map(Task task) {
         TaskDto dto = new TaskDto();
-        dto.setId(task.getId());
         dto.setName(task.getName());
-        dto.setCreateDate(task.getCreateDate());
         dto.setDescription(task.getDescription());
-
+        dto.setId(task.getId());
         return dto;
     }
 
@@ -24,7 +22,6 @@ public class TaskMapper {
             task = new Task();
         }
         task.setName(dto.getName());
-        task.setCreateDate(dto.getCreateDate());
         task.setDescription(dto.getDescription());
         return task;
     }

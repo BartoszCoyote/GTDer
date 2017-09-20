@@ -4,12 +4,10 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import pl.jedynakbartosz.backend.project.Project;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -19,7 +17,12 @@ public class Task {
 
     @Id
     @Setter(AccessLevel.NONE)
-    @Column(name = "ID", columnDefinition = "char(36)")
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
     @Column(name = "NAME", length = 100, nullable = false)
@@ -28,20 +31,16 @@ public class Task {
     @Column(name = "DESCRIPTION", length = 500, nullable = false)
     private String description;
 
-    @Column(name = "DATE_CREATED")
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-
     @ManyToOne
     @JoinColumn(name = "PROJECT_ID")
     private Project project;
 
-    Task() {
-        this.id = UUID.randomUUID().toString();
-    }
-
     Task(String id) {
         this.id = id;
     }
+
+    Task() {
+    }
+
+    ;
 }
