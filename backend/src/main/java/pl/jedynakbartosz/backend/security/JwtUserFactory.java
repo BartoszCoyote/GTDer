@@ -4,7 +4,7 @@ package pl.jedynakbartosz.backend.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import pl.jedynakbartosz.backend.model.security.Authority;
-import pl.jedynakbartosz.backend.model.security.User;
+import pl.jedynakbartosz.backend.user.User;
 
 import java.util.List;
 import java.util.stream.Collectors;

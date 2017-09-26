@@ -1,7 +1,6 @@
-package pl.jedynakbartosz.backend.security.repository;
+package pl.jedynakbartosz.backend.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.jedynakbartosz.backend.model.security.User;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {

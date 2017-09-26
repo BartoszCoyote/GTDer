@@ -1,5 +1,7 @@
 package pl.jedynakbartosz.backend.model.security;
 
+import pl.jedynakbartosz.backend.user.User;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;

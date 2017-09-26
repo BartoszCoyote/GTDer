@@ -5,13 +5,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.jedynakbartosz.backend.model.security.User;
 import pl.jedynakbartosz.backend.security.JwtUserFactory;
-import pl.jedynakbartosz.backend.security.repository.UserRepository;
+import pl.jedynakbartosz.backend.user.User;
+import pl.jedynakbartosz.backend.user.UserRepository;
 
-/**
- * Created by stephan on 20.03.16.
- */
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
