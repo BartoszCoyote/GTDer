@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/task")
 public class TaskController {
 
     public static final Logger logger = LoggerFactory.getLogger(TaskController.class);

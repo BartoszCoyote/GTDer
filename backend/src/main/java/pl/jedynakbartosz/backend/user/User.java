@@ -63,5 +63,12 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
 
+    User(Long id) {
+        this.id = id;
+    }
 
+    User() {
+    }
+
+    ;
 }

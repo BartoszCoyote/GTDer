@@ -18,8 +18,8 @@ public class TaskService {
 
     @Transactional
     public TaskDto create(TaskDto taskDto) {
-        Task task = taskMapper.map(taskDto);
 
+        Task task = taskMapper.map(taskDto);
         task = taskRepository.save(task);
         return taskMapper.map(task);
     }
