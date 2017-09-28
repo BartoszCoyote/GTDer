@@ -1,9 +1,14 @@
 package pl.jedynakbartosz.backend.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     UserDto map(User user) {
         UserDto dto = new UserDto();
@@ -25,7 +30,7 @@ public class UserMapper {
         user.setUsername(dto.getUsername());
         user.setFirstname(dto.getFirstname());
         user.setLastname(dto.getLastname());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setEmail(dto.getEmail());
         user.setLastPasswordResetDate(dto.getLastPasswordResetDate());
         user.setEnabled(true);
