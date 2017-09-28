@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+
 @Component
 public class UserMapper {
 
@@ -29,10 +31,9 @@ public class UserMapper {
         user.setLastname(dto.getLastname());
         user.setUsername(dto.getUsername());
         user.setFirstname(dto.getFirstname());
-        user.setLastname(dto.getLastname());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
         user.setEmail(dto.getEmail());
-        user.setLastPasswordResetDate(dto.getLastPasswordResetDate());
+        user.setLastPasswordResetDate(new Timestamp(System.currentTimeMillis()));
         user.setEnabled(true);
         return user;
     }

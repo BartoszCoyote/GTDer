@@ -32,9 +32,8 @@ public class UserDto {
     @Size(min = 4, max = 50)
     private String email;
 
-    @NotNull
+
     private Boolean enabled;
 
-    @NotNull
     private Date lastPasswordResetDate;
 }

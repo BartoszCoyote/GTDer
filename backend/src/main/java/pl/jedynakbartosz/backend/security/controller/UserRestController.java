@@ -13,7 +13,7 @@ import pl.jedynakbartosz.backend.user.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-@RestController
+@RequestMapping("/api/users")
 public class UserRestController {
 
     @Value("${jwt.header}")
@@ -28,7 +28,7 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
+    @GetMapping
     public JwtUser getAuthenticatedUser(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader).substring(7);
         String username = jwtTokenUtil.getUsernameFromToken(token);
