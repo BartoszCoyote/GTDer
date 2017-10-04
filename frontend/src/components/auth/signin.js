@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 class Signin extends Component{
 
@@ -27,12 +28,11 @@ constructor(props){
 
     onSubmit(e){
         e.preventDefault();
-        let {login,password} = this.state;
-        //this.props.login(login,password);
-        console.log({login,password});
-        this.props.singinUser({login,password});
+        let {username,password} = this.state;
+        console.log({username,password});
+        this.props.actions.signinUser({username,password});
         this.setState({
-            login: '',
+            username: '',
             password: ''
         })
     }
@@ -41,17 +41,17 @@ constructor(props){
 
 
     render(){
-        let {login,password} = this.state;
+        let {username,password} = this.state;
       
 
         return(
             <form onSubmit={this.onSubmit}>
                 
                 <Field
-                    label="Login:"
-                    name="login"
+                    label="Username:"
+                    name="username"
                     component={this.renderField}
-                    onChange={e => this.setState({login: e.target.value})}
+                    onChange={e => this.setState({username: e.target.value})}
                 />
                 <Field
                     label="Password:"
@@ -71,6 +71,17 @@ function mapStateToProps(state) {
     return { form: state.form };
 }
 
+const mapDispatchToProps = (dispatch)=> {
+    return {
+        actions : bindActionCreators(actions , dispatch)
+    };
+    }
+
+Signin = connect(
+    mapStateToProps,
+    mapDispatchToProps 
+)(Signin);
+    
 export default reduxForm({
-    form: 'signin'
-}, mapStateToProps, actions)(Signin);
+form: 'signin'
+})(Signin);
