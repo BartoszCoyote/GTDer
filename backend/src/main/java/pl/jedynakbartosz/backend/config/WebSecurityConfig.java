@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 // we don't need CSRF because our token is invulnerable
                 .csrf().disable()
+                .cors().and()
 
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 
