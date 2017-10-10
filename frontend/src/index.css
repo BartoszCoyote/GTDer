@@ -7,3 +7,14 @@ body {
 form a {
   margin-left: 5px
 }
+
+#main {
+  font-size: 400px;
+  color: black;
+  
+}
+
+#inner {
+  width: 50%;
+  margin: 0 auto;
+}
