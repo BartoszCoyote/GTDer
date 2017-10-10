@@ -1,17 +1,15 @@
-import React , { Component } from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-class Header extends Component{
-    render(){
-        return(
-            <nav className="navbar navbar-light">
-                <ul className="nav navbar-nav">
-                    <li className="nav-item">
-                        Sign In
-                        </li>
-                        </ul>
-                </nav>
-        );
-    }
-}
+const Header = () => (
+  <header>
+    <nav>
+      <ul>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/signin'>Sign In</Link></li>
+      </ul>
+    </nav>
+  </header>
+)
 
-export default Header;
+export default Header

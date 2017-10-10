@@ -16,15 +16,19 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
+  session:
+    jdbc:
+      schema: data.sql
 server:
   contextPath:
-  port: 8383
+  port: 8080
 
 jwt:
   header: Authorization
   secret: mySecret
-  expiration: 604800
+  expiration: 604800 
   route:
     authentication:
       path: auth
       refresh: refresh
+

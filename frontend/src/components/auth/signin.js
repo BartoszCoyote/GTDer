@@ -1,74 +1,87 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as actions from '../../action';
+import { Link } from 'react-router-dom';
+
 
 class Signin extends Component{
 
-constructor(props){
-    super(props);
-    this.state= {};
-    this.onSubmit = this.onSubmit.bind(this);
-}
 
-    renderField(field){
-        return(
-        <div className="form-group">
-            <label>{field.label}</label>
+renderField(field){
+    const { meta: { touched, error} } = field;
+    const className= `form-group ${touched && error ? 'has-error' : ''}`;
+    
+    return(
+    <div className={className}>
+        <label>{field.label}</label>
             <input
                 className="form-control"
                 type="text"
                 {...field.input}
                 />
-           
-        </div>
-        );
+                <div className="text-help">
+                {touched ? error : ''}
+                </div>
+    </div>
+    );
+}
+onSubmit(values){
+    console.log(values);
+    console.log(this.props);
+    this.props.actions.signinUser(values,this.props.history);
+    
+}
+
+render(){
+
+    const { handleSubmit } = this.props; 
+       return(
+          
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <Field
+                label="Username:"
+                name="username"
+                component={this.renderField}
+                //onChange={e => this.setState({username: e.target.value})}
+            />
+            <Field
+                label="Password:"
+                name="password"
+                component={this.renderField}
+                //onChange={e => this.setState({password: e.target.value})}
+            />
+            <button type="submit" className="btn btn-primary"> Sign In </button>
+            <Link to="/" className="btn btn-danger"> Cancel </Link>
+
+        </form>
+       
+       
+
+    );
+}
+}
+
+function validate(values){
+    const errors = {};
+    if(!values.username){
+        errors.username = "Enter Username";
+    }
+    if(!values.password){
+        errors.password = "Enter Password";
     }
 
-    onSubmit(e){
-        e.preventDefault();
-        let {username,password} = this.state;
-        console.log({username,password});
-        this.props.actions.signinUser({username,password});
-        this.setState({
-            username: '',
-            password: ''
-        })
-    }
-
-   
-
-
-    render(){
-        let {username,password} = this.state;
-      
-
-        return(
-            <form onSubmit={this.onSubmit}>
-                
-                <Field
-                    label="Username:"
-                    name="username"
-                    component={this.renderField}
-                    onChange={e => this.setState({username: e.target.value})}
-                />
-                <Field
-                    label="Password:"
-                    name="password"
-                    component={this.renderField}
-                    onChange={e => this.setState({password: e.target.value})}
-                />
-                <button action="submit" className="btn btn-primary"> Sign In </button>
-            </form>
-
-        );
-    }
+    return errors;
 }
 
 
+
 function mapStateToProps(state) {
-    return { form: state.form };
+    return { 
+        form: state.form,
+        errorMessage: state.auth.error
+};
 }
 
 const mapDispatchToProps = (dispatch)=> {
@@ -77,11 +90,13 @@ const mapDispatchToProps = (dispatch)=> {
     };
     }
 
+
 Signin = connect(
     mapStateToProps,
     mapDispatchToProps 
 )(Signin);
     
 export default reduxForm({
+    validate,
 form: 'signin'
 })(Signin);
