@@ -9,6 +9,16 @@ import { Link } from 'react-router-dom';
 class Signin extends Component{
 
 
+    errorMessage() {
+        if (this.props.errorMessage) {
+          return (
+            <div className="info-red">
+              {this.props.errorMessage}
+            </div>
+          );
+        }
+      }
+
 renderField(field){
     const { meta: { touched, error} } = field;
     const className= `form-group ${touched && error ? 'has-error' : ''}`;
@@ -28,9 +38,10 @@ renderField(field){
     );
 }
 onSubmit(values){
-    console.log(values);
-    console.log(this.props);
+  //  console.log(values);
+  //  console.log(this.props);
     this.props.actions.signinUser(values,this.props.history);
+   // console.log(this.props.errorMessage);
     
 }
 
@@ -38,27 +49,30 @@ render(){
 
     const { handleSubmit } = this.props; 
        return(
-          
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+        <div className="form">
+        <div className="container">
+            <h1> Sign In </h1>
+          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
                 label="Username:"
                 name="username"
                 component={this.renderField}
-                //onChange={e => this.setState({username: e.target.value})}
             />
             <Field
                 label="Password:"
                 name="password"
                 component={this.renderField}
-                //onChange={e => this.setState({password: e.target.value})}
             />
             <button type="submit" className="btn btn-primary"> Sign In </button>
             <Link to="/" className="btn btn-danger"> Cancel </Link>
 
         </form>
-       
-       
+    {this.errorMessage()}
+    
+    </div>
+  </div>
 
+       
     );
 }
 }
