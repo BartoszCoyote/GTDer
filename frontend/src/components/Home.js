@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => (
   <div>
-    <h1> '/' Page</h1>
+    <h1> Strona Głowna </h1>
   </div>
 )
 

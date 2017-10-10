@@ -9,12 +9,20 @@ import reducers from './reducers';
 import './index.css';
 import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
+import { AUTH_USER } from './action/types'; 
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store= createStoreWithMiddleware(reducers);
+
+const user = localStorage.getItem('token');
+
+if(user) {
+  store.dispatch({ type: AUTH_USER });
+}
 
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+    <Provider store={store}>
     <BrowserRouter>
         <App />
     </BrowserRouter>

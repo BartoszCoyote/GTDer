@@ -1,15 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Header = () => (
-  <header>
-    <nav>
-      <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/signin'>Sign In</Link></li>
-      </ul>
-    </nav>
-  </header>
-)
 
-export default Header
+class Header extends Component{
+  navbarLinks() {
+    if (this.props.authenticated) {
+      return [
+        <li key="DashBoard"><Link to="/dashboard">DashBoard</Link></li>,
+        <li key="signout"><Link to="/signout">Sign out</Link></li>
+      ];
+    }
+    return [
+      <li key="signin"><Link to="/signin">Sign in</Link></li>,
+      <li key="signup"><Link to="/signup">Sign up</Link></li>
+    ];
+  }
+
+  render() {
+    return (
+      <nav className="navbar">
+        <div className="container">
+          <Link to="/"><span className="brand">Auth-app</span></Link>
+          <ul>
+            {this.navbarLinks()}
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+}
+
+
+function mapStateToProps(state) {
+  return {
+    authenticated: state.auth.authenticated
+  };
+}
+
+export default connect(mapStateToProps)(Header);

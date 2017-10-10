@@ -1,6 +1,19 @@
-export function signOutAction() {
-    localStorage.clear();
-    return {
-      type: UNAUTH_USER
-    };
+import React, { Component } from 'react'
+import { connect} from 'react-redux';
+import * as actions from '../../action';
+
+class Signout extends Component{
+  componentDidMount(){
+    this.props.signoutUser();
   }
+
+  render(){
+    return(
+     <div>
+       Cya 
+     </div>
+    )
+  }
+}
+
+export default connect(null, actions)(Signout);
