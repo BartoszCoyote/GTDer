@@ -7,26 +7,34 @@ class Header extends Component{
   navbarLinks() {
     if (this.props.authenticated) {
       return [
-        <li key="DashBoard"><Link to="/dashboard">DashBoard</Link></li>,
-        <li key="signout"><Link to="/signout">Sign out</Link></li>
+        <ul className="nav nav-tabs">
+        <div className="center">
+        <li className="nav-item" key="DashBoard"><Link to="/dashboard">s</Link></li>
+        </div>
+        <li className="nav-item" key="signout"><Link to="/signout">Sign out</Link></li>
+        </ul>
       ];
     }
     return [
-      <li key="signin"><Link to="/signin">Sign in</Link></li>,
-      <li key="signup"><Link to="/signup">Sign up</Link></li>
+      <ul className="nav nav-tabs">
+        <div className="center">
+        <li className="nav-item test" key="DashBoard"><Link to="/dashboard">/</Link></li>
+        </div>
+      <li className="nav-item" key="signin"><Link to="/signin">Sign in</Link></li>
+      <li className="nav-item" key="signup"><Link to="/signup">Sign up</Link></li>
+      </ul>
     ];
   }
 
   render() {
     return (
-      <nav className="navbar">
-        <div className="container">
-          <Link to="/"><span className="brand">Auth-app</span></Link>
-          <ul>
-            {this.navbarLinks()}
-          </ul>
-        </div>
-      </nav>
+          <div className="barFull">
+      <div className="bar">
+  
+  {this.navbarLinks()}
+
+        </div></div>
+      
     );
   }
 }

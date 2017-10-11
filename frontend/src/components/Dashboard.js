@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 
+
+
 class Dashboard extends Component {
 
     render(){
         return (
-    
-  <div>
-    <h1> DashBoard tylko dla userów </h1>
-  </div>
+          <div>
+              xd
+              
+              </div>
+
+
 );
     }
 }
 
-export default Dashboard
+export default Dashboard;
