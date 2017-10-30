@@ -7,7 +7,7 @@ export function signinUser(values,history){
     return async (dispatch) => {
 
         
-        axios.post('http://localhost:8585/auth',values)
+        axios.post('http://localhost:8080/auth',values)
         .then(response => {
           dispatch({ type: AUTH_USER});
           localStorage.setItem('token', response.data.token);

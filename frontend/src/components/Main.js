@@ -3,12 +3,12 @@ import { Switch, Route } from 'react-router-dom'
 
 import Home from './Home'
 import SignIn from './auth/Signin'
-import SignOut from './auth/signout';
+import SignOut from './auth/Signout';
 import Dashboard from './Dashboard';
 import NotFound from './NotFound';
 
-import requireAuth from '../components/auth/require_auth';
-import norequireAuth from '../components/auth/no_require_auth';
+import requireAuth from '../components/auth/Require_auth';
+import norequireAuth from '../components/auth/No_require_auth';
 
 
 
