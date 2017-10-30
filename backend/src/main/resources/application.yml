@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/tasks?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&requireSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/databaseNAME?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false&requireSSL=false
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -11,7 +11,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
     properties:
       hibernate:
