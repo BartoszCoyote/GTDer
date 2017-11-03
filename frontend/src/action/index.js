@@ -23,6 +23,25 @@ export function signinUser(values,history){
         }
       }
 
+export function signupUser(values,history){
+  return async (dispatch) => {
+
+
+    axios.post('http://localhost:8080/api/user',values)
+    .then(response => {
+      dispatch({ type: AUTH_USER});
+      history.push('/dashboard');
+
+    })
+    .catch(() => {
+      dispatch({
+        type: AUTHENTICATION_ERROR,
+        payload: 'Invalid email or password'
+      });
+    });
+  }
+}
+
 export function signoutUser(){
   localStorage.clear();
   return{

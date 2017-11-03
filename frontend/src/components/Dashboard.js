@@ -7,7 +7,7 @@ class Dashboard extends Component {
     render(){
         return (
           <div>
-              xd
+              Właściwa Apka
               
               </div>
 
