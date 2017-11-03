@@ -52,7 +52,7 @@ render(){
            <div className="container">
         <div className="loginForm">
           <div id="image" >
-            <a href="/"></a>
+            <a href="/"> </a>
 
 
           </div>
