@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../action';
 import { Link } from 'react-router-dom';
+import './Signup.css';
+
 
 
 class Signup extends Component{
@@ -45,10 +47,13 @@ render(){
 
     const { handleSubmit } = this.props; 
        return(
-        <div className="form">
         <div className="container">
-            <h1> Sign Up </h1>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <div className="loginForm">
+            <div id="image">
+              <a href="/"></a>
+
+            </div>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
                 label="Username:"
                 name="username"
@@ -75,12 +80,12 @@ render(){
                 component={this.renderField}
             />
             <button type="submit" className="btn btn-primary"> Sign In </button>
-            <Link to="/" className="btn btn-danger"> Cancel </Link>
-
         </form>
     {this.errorMessage()}
-    
-    </div>
+            <div className="AccountCreate"> <b>Already have an account??</b> <Link to="/signin" className="btn btn-info"> Login </Link></div>
+
+
+          </div>
   </div>
 
        
@@ -122,7 +127,7 @@ const mapDispatchToProps = (dispatch)=> {
     return {
         actions : bindActionCreators(actions , dispatch)
     };
-    }
+    };
 
 
 Signup = connect(

@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../action';
+import './Signin.css';
 import { Link } from 'react-router-dom';
 
 
@@ -38,20 +39,23 @@ renderField(field){
     );
 }
 onSubmit(values){
-  //  console.log(values);
-  //  console.log(this.props);
+
     this.props.actions.signinUser(values,this.props.history);
-   // console.log(this.props.errorMessage);
-    
+
 }
 
 render(){
 
     const { handleSubmit } = this.props; 
        return(
-        <div className="form">
-        <div className="container">
-            <h1> Sign In </h1>
+
+           <div className="container">
+        <div className="loginForm">
+          <div id="image" >
+            <a href="/"></a>
+
+
+          </div>
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
                 label="Username:"
@@ -63,13 +67,12 @@ render(){
                 name="password"
                 component={this.renderField}
             />
-            <button type="submit" className="btn btn-primary"> Sign In </button>
-            <Link to="/" className="btn btn-danger"> Cancel </Link>
-
-        </form>
+            <button type="submit" className="btn btn-primary"> Login </button>
+          </form>
     {this.errorMessage()}
-    
-    </div>
+          <div className="AccountCreate"> <b>Don't have account??</b> <Link to="/signup" className="btn btn-info"> Sign Up </Link></div>
+
+        </div>
   </div>
 
        
