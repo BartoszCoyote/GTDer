@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
-    Task findByName(String name);
+  Task findByName(String name);
 
-    Task findById(String id);
+  Task findById(String id);
 
-    void deleteById(String id);
+  void deleteById(String id);
+
+
 }
