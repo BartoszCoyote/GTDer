@@ -21,8 +21,7 @@ public class UserController {
 
   public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-  @Autowired
-  UserService userService;
+  @Autowired UserService userService;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)

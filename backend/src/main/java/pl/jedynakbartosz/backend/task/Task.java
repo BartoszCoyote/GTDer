@@ -24,10 +24,7 @@ public class Task {
   @Id
   @Setter(AccessLevel.NONE)
   @GeneratedValue(generator = "UUID")
-  @GenericGenerator(
-      name = "UUID",
-      strategy = "org.hibernate.id.UUIDGenerator"
-  )
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @Column(name = "id", updatable = false, nullable = false)
   private String id;
 
@@ -49,8 +46,5 @@ public class Task {
     this.id = id;
   }
 
-  Task() {
-  }
-
-  ;
+  Task() {};
 }

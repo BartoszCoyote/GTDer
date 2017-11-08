@@ -71,9 +71,10 @@ public class User {
 
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
-      name = "USER_AUTHORITY",
-      joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-      inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    name = "USER_AUTHORITY",
+    joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+    inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")}
+  )
   private List<Authority> authorities;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -83,8 +84,5 @@ public class User {
     this.id = id;
   }
 
-  User() {
-  }
-
-  ;
+  public User() {};
 }

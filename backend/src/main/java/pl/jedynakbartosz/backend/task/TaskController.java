@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,16 +26,12 @@ public class TaskController {
 
   public static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-  @Autowired
-  TaskService taskService;
-
+  @Autowired TaskService taskService;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  TaskDto create(@Valid @RequestBody TaskDto dto, HttpServletRequest request) {
-    Principal principal = request.getUserPrincipal();
-    logger.error(principal.getName());
-    return taskService.create(dto);
+  TaskDto create(@Valid @RequestBody TaskDto dto, HttpServletRequest request, Principal principal) {
+    return taskService.create(dto, principal);
   }
 
   @PutMapping("/{id}")
@@ -47,23 +41,12 @@ public class TaskController {
 
   @GetMapping
   List<TaskDto> findAll(Principal principal) {
-    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
     return taskService.findALl(principal);
-
-
   }
-
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   void delete(@PathVariable("id") String id) {
     taskService.delete(id);
   }
-
-
 }
-
-
-
-

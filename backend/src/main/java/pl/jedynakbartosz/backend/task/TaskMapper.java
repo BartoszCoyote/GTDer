@@ -5,24 +5,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskMapper {
 
-    TaskDto map(Task task) {
-        TaskDto dto = new TaskDto();
-        dto.setName(task.getName());
-        dto.setDescription(task.getDescription());
-        dto.setId(task.getId());
-        return dto;
-    }
+  TaskDto map(Task task) {
+    TaskDto dto = new TaskDto();
+    dto.setName(task.getName());
+    dto.setDescription(task.getDescription());
+    dto.setId(task.getId());
+    return dto;
+  }
 
-    Task map(TaskDto dto) {
+  Task map(TaskDto dto) {
 
-        Task task;
-        if (dto.getId() != null) {
-            task = new Task(dto.getId());
-        } else {
-            task = new Task();
-        }
-        task.setName(dto.getName());
-        task.setDescription(dto.getDescription());
-        return task;
+    Task task;
+    if (dto.getId() != null) {
+      task = new Task(dto.getId());
+    } else {
+      task = new Task();
     }
+    task.setName(dto.getName());
+    task.setDescription(dto.getDescription());
+    return task;
+  }
 }
