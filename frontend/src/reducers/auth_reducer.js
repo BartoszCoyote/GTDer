@@ -1,7 +1,4 @@
-import { 
-    AUTH_USER,AUTHENTICATION_ERROR,UNAUTH_USER
-}
-from '../action/types';
+import {AUTH_USER, AUTHENTICATION_ERROR, UNAUTH_USER} from '../action/types';
 
 export default function(state ={}, action){
     switch(action.type){
@@ -12,7 +9,8 @@ export default function(state ={}, action){
         case AUTHENTICATION_ERROR:
             return { ...state, error: action.payload };
          default: return state;
-   
-       
+
+
+
 }
 }
