@@ -7,9 +7,8 @@ class test extends Component{
   componentDidMount(){
     this.props.getTasks();
   }
-
   renderTasks(){
-    console.log(this.props.task);
+    
     return _.map(this.props.task, task =>{
         return(
           <li className="list-group-item" key={task.id}>
@@ -21,7 +20,7 @@ class test extends Component{
   }
 
   render(){
-    console.log(this.props.task);
+   
     return(
 
       <div>

@@ -1,19 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Testowe from './test'
+import Menuu from './Menuu';
 
-
-
-class Dashboard extends Component {
-
-    render(){
-        return (
-          <div>
-              Właściwa Apka
-              
-              </div>
-
-
+const Dashboard = () => (
+  <div>
+  xDD
+   <Menuu />
+   <Testowe />
+   <ul>
+   <li>
+   xd
+   </li></ul>
+  </div>
 );
-    }
-}
 
-export default Dashboard;
+export default Dashboard

@@ -27,6 +27,7 @@ public class TaskService {
     return taskMapper.map(task);
   }
 
+  @Transactional
   public List<TaskDto> findALl(Principal principal) {
     User user = userRepository.findByUsername(principal.getName());
     return taskRepository
