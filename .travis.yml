@@ -10,8 +10,6 @@ after_success:
 
 jdk:
 - oraclejdk8
-# would just use default install/script but the ./mvnw script errors on travis
-# obviously this only works for maven builds right now...
 script:
 - mvn clean install -Dspring.profiles.active=ci -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
