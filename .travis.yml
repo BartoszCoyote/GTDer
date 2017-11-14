@@ -15,8 +15,5 @@ jdk:
 install:
 - mvn clean install -Dspring.profiles.active=ci
 
-script:
-- mvn test
-
 
 
