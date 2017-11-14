@@ -8,106 +8,106 @@ import './Signup.css';
 
 
 
-class Signup extends Component{
+class Signup extends Component {
 
 
     errorMessage() {
         if (this.props.errorMessage) {
-          return (
-            <div className="info-red">
-              {this.props.errorMessage}
-            </div>
-          );
+            return (
+                <div className="info-red">
+                    {this.props.errorMessage}
+                </div>
+            );
         }
-      }
+    }
 
-renderField(field){
-    const { meta: { touched, error} } = field;
-    const className= `form-group ${touched && error ? 'has-error' : ''}`;
-    
-    return(
-    <div className={className}>
-        <label>{field.label}</label>
-            <input
-                className="form-control"
-                type="text"
-                {...field.input}
+    renderField(field) {
+        const { meta: { touched, error } } = field;
+        const className = `form-group ${touched && error ? 'has-error' : ''}`;
+
+        return (
+            <div className={className}>
+                <label>{field.label}</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    {...field.input}
                 />
                 <div className="text-help">
-                {touched ? error : ''}
+                    {touched ? error : ''}
                 </div>
-    </div>
-    );
-}
-onSubmit(values){
-  this.props.actions.signupUser(values,this.props.history);
+            </div>
+        );
+    }
+    onSubmit(values) {
+        this.props.actions.signupUser(values, this.props.history);
     }
 
-render(){
+    render() {
 
-    const { handleSubmit } = this.props; 
-       return(
-        <div className="container">
-          <div className="loginForm">
-            <div id="image">
-              <a href="/"> </a>
+        const { handleSubmit } = this.props;
+        return (
+            <div className="container">
+                <div className="loginForm">
+                    <div id="image">
+                        <a href="/"> </a>
 
+                    </div>
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                        <Field
+                            label="Username:"
+                            name="username"
+                            component={this.renderField}
+                        />
+                        <Field
+                            label="Password:"
+                            name="password"
+                            component={this.renderField}
+                        />
+                        <Field
+                            label="Email:"
+                            name="email"
+                            component={this.renderField}
+                        />
+                        <Field
+                            label="First Name:"
+                            name="firstname"
+                            component={this.renderField}
+                        />
+                        <Field
+                            label="Last Name:"
+                            name="lastname"
+                            component={this.renderField}
+                        />
+                        <button type="submit" className="btn btn-primary"> Sign In </button>
+                    </form>
+                    {this.errorMessage()}
+                    <div className="AccountCreate"> <b>Already have an account??</b> <Link to="/signin" className="btn btn-info"> Login </Link></div>
+
+
+                </div>
             </div>
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field
-                label="Username:"
-                name="username"
-                component={this.renderField}
-            />
-            <Field
-                label="Password:"
-                name="password"
-                component={this.renderField}
-            />
-            <Field
-                label="Email:"
-                name="email"
-                component={this.renderField}
-            />
-            <Field
-                label="First Name:"
-                name="firstname"
-                component={this.renderField}
-            />
-            <Field
-                label="Last Name:"
-                name="lastname"
-                component={this.renderField}
-            />
-            <button type="submit" className="btn btn-primary"> Sign In </button>
-        </form>
-    {this.errorMessage()}
-            <div className="AccountCreate"> <b>Already have an account??</b> <Link to="/signin" className="btn btn-info"> Login </Link></div>
 
 
-          </div>
-  </div>
-
-       
-    );
-}
+        );
+    }
 }
 
-function validate(values){
+function validate(values) {
     const errors = {};
-    if(!values.username){
+    if (!values.username) {
         errors.username = "Enter Username";
     }
-    if(!values.password){
+    if (!values.password) {
         errors.password = "Enter Password";
     }
-    if(!values.lastname){
+    if (!values.lastname) {
         errors.lastname = "Enter Last Name";
     }
-    if(!values.firstname){
+    if (!values.firstname) {
         errors.firstname = "Enter First Name";
     }
-    if(!values.email){
+    if (!values.email) {
         errors.email = "Enter Email";
     }
 
@@ -117,25 +117,25 @@ function validate(values){
 
 
 function mapStateToProps(state) {
-    return { 
+    return {
         form: state.form,
         errorMessage: state.auth.error
-};
+    };
 }
 
-const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch) => {
     return {
-        actions : bindActionCreators(actions , dispatch)
+        actions: bindActionCreators(actions, dispatch)
     };
-    };
+};
 
 
 Signup = connect(
     mapStateToProps,
-    mapDispatchToProps 
+    mapDispatchToProps
 )(Signup);
-    
+
 export default reduxForm({
     validate,
-form: 'signup'
+    form: 'signup'
 })(Signup);

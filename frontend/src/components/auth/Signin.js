@@ -7,85 +7,85 @@ import './Signin.css';
 import { Link } from 'react-router-dom';
 
 
-class Signin extends Component{
+class Signin extends Component {
 
 
     errorMessage() {
         if (this.props.errorMessage) {
-          return (
-            <div className="info-red">
-              {this.props.errorMessage}
-            </div>
-          );
+            return (
+                <div className="info-red">
+                    {this.props.errorMessage}
+                </div>
+            );
         }
-      }
+    }
 
-renderField(field){
-    const { meta: { touched, error} } = field;
-    const className= `form-group ${touched && error ? 'has-error' : ''}`;
-    
-    return(
-    <div className={className}>
-        <label>{field.label}</label>
-            <input
-                className="form-control"
-                type="text"
-                {...field.input}
+    renderField(field) {
+        const { meta: { touched, error } } = field;
+        const className = `form-group ${touched && error ? 'has-error' : ''}`;
+
+        return (
+            <div className={className}>
+                <label>{field.label}</label>
+                <input
+                    className="form-control"
+                    type="text"
+                    {...field.input}
                 />
                 <div className="text-help">
-                {touched ? error : ''}
+                    {touched ? error : ''}
                 </div>
-    </div>
-    );
+            </div>
+        );
+    }
+    onSubmit(values) {
+
+        this.props.actions.signinUser(values, this.props.history);
+
+    }
+
+    render() {
+
+        const { handleSubmit } = this.props;
+        return (
+
+            <div className="container">
+                <div className="loginForm">
+                    <div id="image" >
+                        <a href="/"> </a>
+
+
+                    </div>
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                        <Field
+                            label="Username:"
+                            name="username"
+                            component={this.renderField}
+                        />
+                        <Field
+                            label="Password:"
+                            name="password"
+                            component={this.renderField}
+                        />
+                        <button type="submit" className="btn btn-primary"> Login </button>
+                    </form>
+                    {this.errorMessage()}
+                    <div className="AccountCreate"> <b>Don't have account??</b> <Link to="/signup" className="btn btn-info"> Sign Up </Link></div>
+
+                </div>
+            </div>
+
+
+        );
+    }
 }
-onSubmit(values){
 
-    this.props.actions.signinUser(values,this.props.history);
-
-}
-
-render(){
-
-    const { handleSubmit } = this.props; 
-       return(
-
-           <div className="container">
-        <div className="loginForm">
-          <div id="image" >
-            <a href="/"> </a>
-
-
-          </div>
-          <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-            <Field
-                label="Username:"
-                name="username"
-                component={this.renderField}
-            />
-            <Field
-                label="Password:"
-                name="password"
-                component={this.renderField}
-            />
-            <button type="submit" className="btn btn-primary"> Login </button>
-          </form>
-    {this.errorMessage()}
-          <div className="AccountCreate"> <b>Don't have account??</b> <Link to="/signup" className="btn btn-info"> Sign Up </Link></div>
-
-        </div>
-  </div>
-
-       
-    );
-}
-}
-
-function validate(values){
+function validate(values) {
     const errors = {};
-    if(!values.username){
+    if (!values.username) {
         errors.username = "Enter Username";
     }
-    if(!values.password){
+    if (!values.password) {
         errors.password = "Enter Password";
     }
 
@@ -95,25 +95,25 @@ function validate(values){
 
 
 function mapStateToProps(state) {
-    return { 
+    return {
         form: state.form,
         errorMessage: state.auth.error
-};
+    };
 }
 
-const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch) => {
     return {
-        actions : bindActionCreators(actions , dispatch)
+        actions: bindActionCreators(actions, dispatch)
     };
-    }
+}
 
 
 Signin = connect(
     mapStateToProps,
-    mapDispatchToProps 
+    mapDispatchToProps
 )(Signin);
-    
+
 export default reduxForm({
     validate,
-form: 'signin'
+    form: 'signin'
 })(Signin);

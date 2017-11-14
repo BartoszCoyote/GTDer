@@ -2,15 +2,15 @@ import React, { Component } from 'react'
 
 class Dashboard extends Component {
 
-    render(){
+    render() {
         return (
-    
-  <div id="main">
-      <div id="inner">
-    404
+
+            <div id="main">
+                <div id="inner">
+                    404
     </div>
-  </div>
-);
+            </div>
+        );
     }
 }
 

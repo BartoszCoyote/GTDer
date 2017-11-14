@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actions from '../../action';
 
-class Signout extends Component{
-  componentDidMount(){
+class Signout extends Component {
+  componentDidMount() {
     this.props.signoutUser();
   }
 
-  render(){
-    return(
-     <div>
-       Cya 
+  render() {
+    return (
+      <div>
+        Cya
      </div>
     )
   }

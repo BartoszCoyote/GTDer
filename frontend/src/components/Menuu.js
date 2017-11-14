@@ -1,5 +1,5 @@
 import React from 'react';
-import {List, ListItem} from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
@@ -29,62 +29,62 @@ export default class ListExampleNested extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-      
-      <div>
-      
-      
-      
-        <div className="menu">
-          <List>
-            <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} />
-            <ListItem primaryText="Today" leftIcon={<ContentSend />} />
-            <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} />
-            <ListItem
-              primaryText="Projects"
-              leftIcon={<ContentInbox />}
-              initiallyOpen={false}
-              primaryTogglesNestedList={true}
-              nestedItems={[
-                <ListItem
-                  key={1}
-                  primaryText="one"
-                  leftIcon={<ActionGrade />}
-                />,
-                <ListItem
-                  key={2}
-                  primaryText="two"
-                  leftIcon={<ContentSend />}
-                  initiallyOpen={true}
-                  primaryTogglesNestedList={true}
-                  containerElement={<Link to="/linkdoczegos" />}
-                  
-                 />
-              ]}
-            />
-            <ListItem
-            primaryText="Labels"
-            leftIcon={<ContentInbox />}
-            initiallyOpen={false}
-            primaryTogglesNestedList={true}
-            nestedItems={[
+
+        <div>
+
+
+
+          <div className="menu">
+            <List>
+              <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} />
+              <ListItem primaryText="Today" leftIcon={<ContentSend />} />
+              <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} />
               <ListItem
-                key={1}
-                primaryText="one"
-                leftIcon={<ActionGrade />}
-              />,
-              <ListItem
-                key={2}
-                primaryText="two"
-                leftIcon={<ContentSend />}
+                primaryText="Projects"
+                leftIcon={<ContentInbox />}
+                initiallyOpen={false}
                 primaryTogglesNestedList={true}
-               />
-            ]}
-          />
-          </List>
+                nestedItems={[
+                  <ListItem
+                    key={1}
+                    primaryText="one"
+                    leftIcon={<ActionGrade />}
+                  />,
+                  <ListItem
+                    key={2}
+                    primaryText="two"
+                    leftIcon={<ContentSend />}
+                    initiallyOpen={true}
+                    primaryTogglesNestedList={true}
+                    containerElement={<Link to="/linkdoczegos" />}
+
+                  />
+                ]}
+              />
+              <ListItem
+                primaryText="Labels"
+                leftIcon={<ContentInbox />}
+                initiallyOpen={false}
+                primaryTogglesNestedList={true}
+                nestedItems={[
+                  <ListItem
+                    key={1}
+                    primaryText="one"
+                    leftIcon={<ActionGrade />}
+                  />,
+                  <ListItem
+                    key={2}
+                    primaryText="two"
+                    leftIcon={<ContentSend />}
+                    primaryTogglesNestedList={true}
+                  />
+                ]}
+              />
+            </List>
+          </div>
         </div>
-      </div>
       </MuiThemeProvider>
-      
+
     );
   }
 }
