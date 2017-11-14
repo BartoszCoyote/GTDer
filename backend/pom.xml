@@ -26,12 +26,13 @@
   </properties>
   <profiles>
     <profile>
-      <id>h2</id>
+      <id>ci</id>
+      <properties>
+        <activatedProperties>ci</activatedProperties>
+        <spring.profiles.active>ci</spring.profiles.active>
+      </properties>
       <activation>
-        <property>
-          <name>spring.profiles.active</name>
-          <value>ci</value>
-        </property>
+        <activeByDefault>false</activeByDefault>
       </activation>
     </profile>
   </profiles>
@@ -92,10 +93,14 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-rest</artifactId>
     </dependency>
+
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
+      <version>1.4.196</version>
+      <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -131,6 +136,12 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
   </build>
 
 
