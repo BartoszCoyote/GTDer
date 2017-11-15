@@ -4,8 +4,9 @@ import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Link } from 'react-router-dom';
+import './Menu.css';
 
 
 export default class ListExampleNested extends React.Component {

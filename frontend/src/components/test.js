@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../action';
 import _ from 'lodash';
+import './test.css';
 
 class test extends Component {
   componentDidMount() {
@@ -23,11 +24,12 @@ class test extends Component {
 
     return (
 
-      <div>
+      <div className="task-list">
         <ul className="list-group">
           {this.renderTasks()};
 </ul>
       </div>
+
     )
   }
 }

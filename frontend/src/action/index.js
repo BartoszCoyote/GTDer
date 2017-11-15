@@ -56,18 +56,20 @@ export function getTasks() {
 
   let token = localStorage.getItem('token');
   let config = {
-    headers: { 'Authorization': "Bearer " + token }
+    headers:{
+    withCredentials: true,
+    'Authorization': "Bearer " + token
+    }
   };
-
+  console.log(config);
   return async (dispatch) => {
-    axios.get('http://localhost:8080/api/task', config)
+    axios.get('http://localhost:8080/api/task',config)
       .then(response => {
         dispatch({
           type: FETCH_TASKS,
           payload: response
-        }
-
-        )
+        })
       })
+    .catch(e => { console.log(e); });
   }
 }
