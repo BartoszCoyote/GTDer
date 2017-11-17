@@ -1,12 +1,13 @@
-import React from 'react'
-import Testowe from './test'
-import Menuu from './Menuu';
+import React from 'react';
+
+import Testowe from './List';
+import Menu from './Menu';
 
 const Dashboard = () => (
   <div>
-   <Menuu />
-    <Testowe />
+    <Menu/>
+    <Testowe/>
   </div>
 );
 
-export default Dashboard
+export default Dashboard;

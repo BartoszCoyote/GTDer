@@ -1,42 +1,40 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../action';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import _ from 'lodash';
-import './test.css';
 
-class test extends Component {
+import * as actions from '../action';
+import './List.css';
+
+class List extends Component {
+
   componentDidMount() {
     this.props.getTasks();
   }
-  renderTasks() {
 
+  renderTasks() {
     return _.map(this.props.task, task => {
       return (
         <li className="list-group-item" key={task.id}>
           <h1> {task.name} </h1>
           {task.description}
         </li>
-      )
-    })
+      );
+    });
   }
 
   render() {
-
     return (
-
       <div className="task-list">
         <ul className="list-group">
           {this.renderTasks()};
-</ul>
+        </ul>
       </div>
-
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return { task: state.task }
+  return {task: state.task};
 }
 
-
-export default connect(mapStateToProps, actions)(test);
+export default connect(mapStateToProps, actions)(List);

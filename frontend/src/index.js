@@ -12,20 +12,22 @@ import registerServiceWorker from './registerServiceWorker';
 import {AUTH_USER} from './action/types';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(reducers,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStoreWithMiddleware(
+  reducers, window.__REDUX_DEVTOOLS_EXTENSION__
+  && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const user = localStorage.getItem('token');
 
 if (user) {
-    store.dispatch({ type: AUTH_USER });
+  store.dispatch({type: AUTH_USER});
 }
 
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
-    , document.getElementById('root'));
+  <Provider store={store}>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
+  </Provider>
+  , document.getElementById('root'));
 registerServiceWorker();
