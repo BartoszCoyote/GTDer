@@ -61,7 +61,12 @@ export default class ListExampleNested extends Component {
                   />
                 ]}
               />
+              <div className="bottom">
+                <ListItem primaryText="Inbox" leftIcon={<ContentDrafts/>}/>
+
+              </div>
             </List>
+
           </div>
         </div>
       </MuiThemeProvider>

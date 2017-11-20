@@ -9,7 +9,7 @@ class Header extends Component {
         <ul className="nav nav-tabs">
           <div className="center">
             <li className="nav-item" key="DashBoard"><Link to="/dashboard">
-              Dashboard </Link></li>
+            </Link></li>
           </div>
           <li className="nav-item" key="signout"><Link to="/signout">Sign
             out</Link></li>
@@ -19,8 +19,8 @@ class Header extends Component {
     return [
       <ul className="nav nav-tabs">
         <div className="center">
-          <li className="nav-item test" key="DashBoard"><Link to="/dashboard">
-            Main Page </Link></li>
+          <li className="nav-item test" key="DashBoardInny"><Link to="/dashboard">
+          </Link></li>
         </div>
         <li className="nav-item" key="signin"><Link to="/signin">Sign in</Link>
         </li>
