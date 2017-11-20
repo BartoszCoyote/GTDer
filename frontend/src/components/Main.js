@@ -7,8 +7,8 @@ import SignOut from './auth/Signout';
 import SignUp from './auth/Singup';
 import Dashboard from './Dashboard';
 import NotFound from './NotFound';
-import requireAuth from '../components/auth/Require_auth';
-import noRequireAuth from '../components/auth/No_require_auth';
+import requireAuth from './auth/Require_auth';
+import noRequireAuth from '../components/auth/No_require_auth.js';
 
 const Main = () => (
   <main>

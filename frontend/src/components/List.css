@@ -1,6 +1,23 @@
 .task-list {
-  background-color: red;
-  position: inherit;
-  margin-left: 20%;
-  margin-top: -14%;
+
+  width:75%;
+
+  height:100%;
+  overflow: scroll;
+
+  border:1px solid;
+
+  position: fixed;
+  top: 10%;
+  left:25%;
+
+
+
+
+}
+
+.list-group-item{
+  background-color: transparent;
+  border: groove;
+  background-color: ghostwhite;
 }

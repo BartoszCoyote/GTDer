@@ -62,7 +62,7 @@ export default class ListExampleNested extends Component {
                 ]}
               />
               <div className="bottom">
-                <ListItem primaryText="Inbox" leftIcon={<ContentDrafts/>}/>
+                <ListItem primaryText="Trash" leftIcon={<ContentDrafts/>}/>
 
               </div>
             </List>

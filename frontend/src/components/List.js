@@ -15,8 +15,8 @@ class List extends Component {
     return _.map(this.props.task, task => {
       return (
         <li className="list-group-item" key={task.id}>
-          <h1> {task.name} </h1>
-          {task.description}
+          <h1>{task.name}</h1>
+          {task.projekt}
         </li>
       );
     });
@@ -26,7 +26,7 @@ class List extends Component {
     return (
       <div className="task-list">
         <ul className="list-group">
-          {this.renderTasks()};
+          {this.renderTasks()}
         </ul>
       </div>
     );
