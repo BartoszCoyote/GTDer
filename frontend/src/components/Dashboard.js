@@ -1,11 +1,13 @@
 import React from 'react';
 import Menu from './Menu';
 import Testowe from './List';
+import TestowyModal from './TestowyModal';
 
 const Dashboard = () => (
   <div>
-    <Menu/>
-    <Testowe/>
+    <Menu />
+    <Testowe />
+    <TestowyModal />
   </div>
 );
 
