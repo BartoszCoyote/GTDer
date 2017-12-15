@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 
 import * as actions from '../action';
 
@@ -19,10 +20,13 @@ class TestowyModal extends Component {
     }
   }
 
+
+
   onSubmit(values) {
 
 
     this.props.actions.postNewTask(values, this.props.history);
+
   }
 
 
@@ -101,7 +105,6 @@ class TestowyModal extends Component {
 
 
             <div className="loginForm">
-
               <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
                   label="description:"
@@ -156,10 +159,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-TestowyModal = connect(
+TestowyModal = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(TestowyModal);
+)(TestowyModal));
 
 export default reduxForm({
   validate,

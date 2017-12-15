@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../../action';
 import './Signin.css';
@@ -20,7 +20,7 @@ class Signin extends Component {
   }
 
   renderField(field) {
-    const {meta: {touched, error}} = field;
+    const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? 'has-error' : ''}`;
 
     return (
@@ -39,11 +39,12 @@ class Signin extends Component {
   }
 
   onSubmit(values) {
+    console.log(this.props)
     this.props.actions.signinUser(values, this.props.history);
   }
 
   render() {
-    const {handleSubmit} = this.props;
+    const { handleSubmit } = this.props;
     return (
       <div className="container">
         <div className="loginForm">

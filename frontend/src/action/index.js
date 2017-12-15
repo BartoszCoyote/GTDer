@@ -9,6 +9,9 @@ import {
 } from './types';
 
 export function signinUser(values, history) {
+  console.log("logowanie")
+  console.log(history)
+
   return async (dispatch) => {
     axios.post('http://localhost:8080/auth', values)
       .then(response => {
@@ -26,6 +29,7 @@ export function signinUser(values, history) {
 }
 
 export function signupUser(values, history) {
+
   return async (dispatch) => {
     axios.post('http://localhost:8080/api/user', values)
       .then(response => {
@@ -73,7 +77,11 @@ export function getTasks() {
 
 
 export function postNewTask(values, history) {
+  console.log("logowanie")
+  console.log(history)
+
   let token = localStorage.getItem('token');
+  console.log(history)
   return async (dispatch) => {
     axios({
       method: 'post',
@@ -87,8 +95,7 @@ export function postNewTask(values, history) {
     })
       .then(response => {
         dispatch({ type: POST_TASK });
-        this.props.history.push('/');
-
+        history.push('/dashboard');
 
 
       })

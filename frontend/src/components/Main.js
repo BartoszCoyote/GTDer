@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import Home from './Home';
 import SignIn from './auth/Signin';
@@ -14,13 +14,12 @@ import TestowyModal from '../components/TestowyModal';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={NoRequireAuth(Home)}/>
-      <Route exact path='/signin' component={NoRequireAuth(SignIn)}/>
-      <Route exact path='/signout' component={SignOut}/>
-      <Route exact path='/signup' component={SignUp}/>
-      <Route exact path='/modal' component={TestowyModal}/>
-      <Route exact path='/dashboard' component={RequireAuth(Dashboard)}/>
-      <Route path="*" component={NotFound}/>
+      <Route exact path='/' component={NoRequireAuth(Home)} />
+      <Route exact path='/signin' component={NoRequireAuth(SignIn)} />
+      <Route exact path='/signout' component={SignOut} />
+      <Route exact path='/signup' component={SignUp} />
+      <Route exact path='/dashboard' component={RequireAuth(Dashboard)} />
+      <Route path="*" component={NotFound} />
     </Switch>
   </main>
 );
