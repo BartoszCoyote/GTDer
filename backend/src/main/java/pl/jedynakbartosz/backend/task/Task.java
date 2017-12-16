@@ -1,12 +1,7 @@
 package pl.jedynakbartosz.backend.task;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,11 +17,11 @@ import pl.jedynakbartosz.backend.user.User;
 public class Task {
 
   @Id
+  @Column(name = "ID")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Setter(AccessLevel.NONE)
-  @GeneratedValue(generator = "UUID")
   @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-  @Column(name = "id", updatable = false, nullable = false)
-  private String id;
+  private Long id;
 
   @Column(name = "NAME", length = 100, nullable = false)
   private String name;
@@ -42,7 +37,7 @@ public class Task {
   @JoinColumn(referencedColumnName = "ID", name = "user_id")
   private User user;
 
-  Task(String id) {
+  Task(Long id) {
     this.id = id;
   }
 

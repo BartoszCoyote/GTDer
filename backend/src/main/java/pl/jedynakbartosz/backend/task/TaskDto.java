@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 public class TaskDto {
 
-  private String id;
+  private Long id;
 
   @NotNull
   @Length(min = 1, max = 100)
