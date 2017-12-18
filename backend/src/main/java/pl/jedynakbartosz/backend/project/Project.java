@@ -1,10 +1,10 @@
 package pl.jedynakbartosz.backend.project;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,8 +28,13 @@ public class Project {
   @Column(name = "NAME")
   private String name;
 
-  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "project")
+  @JsonIgnore
+  @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
   private List<Task> tasks;
 
-  public Project() {}
+  Project() {}
+
+  public Project(String name) {
+    this.name = name;
+  }
 }

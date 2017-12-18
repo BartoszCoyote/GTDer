@@ -10,6 +10,8 @@ public class TaskMapper {
     dto.setName(task.getName());
     dto.setDescription(task.getDescription());
     dto.setId(task.getId());
+    dto.setProject(task.getProject());
+
     return dto;
   }
 
@@ -23,6 +25,7 @@ public class TaskMapper {
     }
     task.setName(dto.getName());
     task.setDescription(dto.getDescription());
+    task.setProject(dto.getProject());
     return task;
   }
 }

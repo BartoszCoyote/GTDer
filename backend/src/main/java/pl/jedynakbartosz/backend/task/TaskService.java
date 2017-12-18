@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.jedynakbartosz.backend.project.Project;
+import pl.jedynakbartosz.backend.project.ProjectRepository;
 import pl.jedynakbartosz.backend.user.User;
 import pl.jedynakbartosz.backend.user.UserRepository;
 
@@ -17,12 +19,24 @@ public class TaskService {
   private final TaskRepository taskRepository;
   private final TaskMapper taskMapper;
   private final UserRepository userRepository;
+  private final ProjectRepository projectRepository;
 
   @Transactional
   public TaskDto create(TaskDto taskDto, Principal principal) {
     User user = userRepository.findByUsername(principal.getName());
     Task task = taskMapper.map(taskDto);
     task.setUser(user);
+    Project project = null;
+
+    if (taskDto.getProject() == null) {
+      project = projectRepository.findByName("Inbox");
+    } else if (!projectRepository.existsByName(taskDto.getProject().getName())) {
+      project = new Project(taskDto.getProject().getName());
+    } else if (projectRepository.existsByName(taskDto.getProject().getName())) {
+      project = projectRepository.findByName(taskDto.getProject().getName());
+    }
+    task.setProject(project);
+
     task = taskRepository.save(task);
     return taskMapper.map(task);
   }

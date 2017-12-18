@@ -1,7 +1,15 @@
 package pl.jedynakbartosz.backend.task;
 
-import javax.persistence.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -29,7 +37,8 @@ public class Task {
   @Column(name = "DESCRIPTION", length = 500, nullable = false)
   private String description;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JsonIgnore
   @JoinColumn(name = "PROJECT_ID")
   private Project project;
 

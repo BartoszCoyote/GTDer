@@ -7,3 +7,6 @@ INSERT INTO authority (ID, NAME) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (1, 1);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (1, 2);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (2, 1);
+
+
+INSERT INTO `project` (id,NAME) VALUES (0,"Inbox");

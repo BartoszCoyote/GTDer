@@ -3,6 +3,7 @@ package pl.jedynakbartosz.backend.task;
 import javax.validation.constraints.NotNull;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import pl.jedynakbartosz.backend.project.Project;
 
 @Data
 public class TaskDto {
@@ -16,4 +17,6 @@ public class TaskDto {
   @NotNull
   @Length(min = 1, max = 500)
   private String description;
+
+  private Project project;
 }
