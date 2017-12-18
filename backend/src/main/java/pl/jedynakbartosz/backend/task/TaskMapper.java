@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskMapper {
 
-  TaskDto map(Task task) {
+  public TaskDto map(Task task) {
     TaskDto dto = new TaskDto();
     dto.setName(task.getName());
     dto.setDescription(task.getDescription());

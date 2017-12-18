@@ -5,6 +5,9 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.jedynakbartosz.backend.task.TaskDto;
+import pl.jedynakbartosz.backend.task.TaskMapper;
+import pl.jedynakbartosz.backend.task.TaskRepository;
 import pl.jedynakbartosz.backend.user.UserRepository;
 
 @Service
@@ -15,6 +18,8 @@ public class ProjectService {
   private final ProjectRepository projectRepository;
   private final ProjectMapper projectMapper;
   private final UserRepository userRepository;
+  private final TaskRepository taskRepository;
+  private final TaskMapper taskMapper;
 
   @Transactional
   public ProjectDto create(ProjectDto projectDto) {
@@ -32,6 +37,16 @@ public class ProjectService {
         .findAll()
         .stream()
         .map(ProjectMapper::map)
+        .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<TaskDto> showAllTask(String name) {
+    return taskRepository
+        .findAll()
+        .stream()
+        .filter(task -> task.getProject().getName().equals(name))
+        .map(taskMapper::map)
         .collect(Collectors.toList());
   }
 }
