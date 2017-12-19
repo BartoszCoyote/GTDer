@@ -4,6 +4,8 @@ import _ from 'lodash';
 
 import * as actions from '../action';
 import './List.css';
+import { Link } from 'react-router-dom';
+
 
 class List extends Component {
 
@@ -17,7 +19,10 @@ class List extends Component {
     return _.map(_.sortBy(this.props.task, this.props.task.name), task => {
       return (
         <li className="list-group-item" key={task.id}>
-          {task.name},{task.description}
+         <Link to={"task/"+task.id}>
+         <span className="pull-xs-right">{task.name} </span>
+         <strong>{task.description} </strong>
+         </Link>
 
         </li>
       );
