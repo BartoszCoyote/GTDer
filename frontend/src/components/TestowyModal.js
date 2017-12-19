@@ -74,7 +74,7 @@ class TestowyModal extends Component {
         <div className="ButtonModal">
           <Button
             bsStyle="danger"
-            bsSize="big"
+            bsSize="large"
             onClick={this.open.bind(this)}
             className="button"
 
@@ -107,6 +107,7 @@ class TestowyModal extends Component {
                   label="project:"
                   name="project"
                   component={this.renderField}
+
                 />
                 <button type="submit" className="btn btn-primary"> Login</button>
               </form>

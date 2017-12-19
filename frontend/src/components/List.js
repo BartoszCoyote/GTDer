@@ -9,7 +9,8 @@ class List extends Component {
 
 
   componentDidMount() {
-    this.props.getTasks();
+    var xd = 'Inbox';
+    this.props.getTasks(xd);
   }
 
   renderTasks() {

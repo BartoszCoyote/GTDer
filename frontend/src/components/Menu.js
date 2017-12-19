@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
+import ActionDelete from 'material-ui/svg-icons/action/delete';
+
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
 import ContentSend from 'material-ui/svg-icons/content/send';
@@ -9,10 +11,15 @@ import './Menu.css';
 import * as actions from '../action';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 
 class Menu extends Component {
 
+
+  klik(value) {
+    this.props.getTasks(value);
+  }
   componentDidMount() {
     this.props.getProjects();
   }
@@ -24,6 +31,8 @@ class Menu extends Component {
           key={project.id}
           primaryText={project.name}
           leftIcon={<ActionGrade />}
+          onClick={this.klik.bind(this, project.name)}
+
         />
       );
     });
@@ -33,6 +42,7 @@ class Menu extends Component {
 
 
   render() {
+    var xd = "Inbox";
     return (
       <MuiThemeProvider>
         <div>
@@ -64,13 +74,15 @@ class Menu extends Component {
                   <ListItem
                     key={2}
                     primaryText="two"
-                    leftIcon={<ContentSend />}
+                    leftIcon={<ActionGrade />}
                     primaryTogglesNestedList={true}
                   />
                 ]}
               />
               <div className="bottom">
-                <ListItem primaryText="Trash" leftIcon={<ContentDrafts />} />
+                <ListItem primaryText="Trash" leftIcon={<ActionDelete />} onClick={this.klik.bind(this, "Trash")}
+
+                />
 
               </div>
             </List>

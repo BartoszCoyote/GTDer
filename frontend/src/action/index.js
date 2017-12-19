@@ -10,8 +10,6 @@ import {
 } from './types';
 
 export function signinUser(values, history) {
-  console.log("logowanie")
-  console.log(history)
 
   return async (dispatch) => {
     axios.post('http://localhost:8080/auth', values)
@@ -53,7 +51,7 @@ export function signoutUser() {
   };
 }
 
-export function getTasks() {
+export function getTasks(value) {
   let token = localStorage.getItem('token');
   let config = {
     headers: {
@@ -61,9 +59,8 @@ export function getTasks() {
       'Authorization': 'Bearer ' + token
     }
   };
-  console.log(config);
   return async (dispatch) => {
-    axios.get('http://localhost:8080/api/task', config)
+    axios.get('http://localhost:8080/api/project/' + value, config)
       .then(response => {
         dispatch({
           type: FETCH_TASKS,
@@ -78,9 +75,6 @@ export function getTasks() {
 
 
 export function postNewTask(values, history) {
-  console.log("logowanie")
-  console.log(history)
-
   let token = localStorage.getItem('token');
   console.log(history)
   return async (dispatch) => {
@@ -114,7 +108,6 @@ export function getProjects() {
       'Authorization': 'Bearer ' + token
     }
   };
-  console.log(config);
   return async (dispatch) => {
     axios.get('http://localhost:8080/api/project', config)
       .then(response => {
