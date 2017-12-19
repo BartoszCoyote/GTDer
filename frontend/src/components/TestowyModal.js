@@ -48,6 +48,24 @@ class TestowyModal extends Component {
     );
   }
 
+  renderSelect(field) {
+    return (
+      <div>
+        <label>{field.label}</label>
+        <select
+          className="form-control"
+          type="text"
+          {...field.input}>
+          <option value=""></option>
+          <option value="grapefruit">Grapefruit</option>
+          <option value="lime">Lime</option>
+          <option value="coconut">Coconut</option>
+        </select>
+      </div>
+
+    )
+  }
+
   componentWillMount() {
 
     this.setState({
@@ -106,13 +124,14 @@ class TestowyModal extends Component {
                 <Field
                   label="project:"
                   name="project"
-                  component={this.renderField}
+                  component={this.renderSelect}
 
                 />
                 <button type="submit" className="btn btn-primary"> Login</button>
-              </form>
-              {this.errorMessage()}
 
+
+                {this.errorMessage()}
+              </form>
             </div>
 
 
