@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Popover, Button, Tooltip, Modal, OverlayTrigger } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 
 import * as actions from '../action';
@@ -66,18 +65,6 @@ class TestowyModal extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-
-    const popover = (
-      <Popover id="modal-popover" title="popover">
-        very popover. such engagement
-          </Popover>
-    );
-    const tooltip = (
-      <Tooltip id="modal-tooltip">
-        wow.
-          </Tooltip>
-    );
-
 
 
     return (

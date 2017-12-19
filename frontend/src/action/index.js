@@ -5,7 +5,8 @@ import {
   AUTHENTICATION_ERROR,
   FETCH_TASKS,
   UNAUTH_USER,
-  POST_TASK
+  POST_TASK,
+  FETCH_PROJECTS
 } from './types';
 
 export function signinUser(values, history) {
@@ -98,6 +99,29 @@ export function postNewTask(values, history) {
         history.push('/dashboard');
 
 
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function getProjects() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  console.log(config);
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/project', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_PROJECTS,
+          payload: response
+        });
       })
       .catch(e => {
         console.log(e);

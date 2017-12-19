@@ -9,7 +9,6 @@ import Dashboard from './Dashboard';
 import NotFound from './NotFound';
 import RequireAuth from './auth/Require_auth';
 import NoRequireAuth from '../components/auth/No_require_auth.js';
-import TestowyModal from '../components/TestowyModal';
 
 const Main = () => (
   <main>
