@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router'
-
+import './TestowyModal.css';
 import * as actions from '../action';
 
 class TestowyModal extends Component {
@@ -69,12 +69,12 @@ class TestowyModal extends Component {
 
     return (
 
-      <div>
+      <div className="ModalowyButton">
 
         <div className="ButtonModal">
           <Button
-            bsStyle="primary"
-            bsSize="small"
+            bsStyle="danger"
+            bsSize="big"
             onClick={this.open.bind(this)}
             className="button"
 
@@ -101,6 +101,11 @@ class TestowyModal extends Component {
                 <Field
                   label="name:"
                   name="name"
+                  component={this.renderField}
+                />
+                <Field
+                  label="project:"
+                  name="project"
                   component={this.renderField}
                 />
                 <button type="submit" className="btn btn-primary"> Login</button>
