@@ -11,7 +11,6 @@ import './Menu.css';
 import * as actions from '../action';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 
 
 class Menu extends Component {
@@ -42,13 +41,12 @@ class Menu extends Component {
 
 
   render() {
-    var xd = "Inbox";
     return (
       <MuiThemeProvider>
         <div>
           <div className="menu">
             <List>
-              <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} />
+              <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} onClick={this.klik.bind(this, "Inbox")} />
               <ListItem primaryText="Today" leftIcon={<ContentSend />} />
               <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} />
               <ListItem

@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
   task: taskReducer,
   project: projectReducer
 
+
 });
 
 export default rootReducer;

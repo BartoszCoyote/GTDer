@@ -19,10 +19,10 @@ class List extends Component {
     return _.map(_.sortBy(this.props.task, this.props.task.name), task => {
       return (
         <li className="list-group-item" key={task.id}>
-         <Link to={"task/"+task.id}>
-         <span className="pull-xs-right">{task.name} </span>
-         <strong>{task.description} </strong>
-         </Link>
+          <Link to={"task/" + task.id}>
+            <span className="pull-xs-right">{task.name} </span>
+            <strong>{task.description} </strong>
+          </Link>
 
         </li>
       );

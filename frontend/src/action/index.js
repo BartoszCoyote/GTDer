@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   AUTH_USER,
+  FETCH_TASK,
   AUTHENTICATION_ERROR,
   REGISTER_USER,
   FETCH_TASKS,
@@ -65,6 +66,28 @@ export function getTasks(value) {
       .then(response => {
         dispatch({
           type: FETCH_TASKS,
+          payload: response
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function getTaskByID(value) {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/task/' + value, config)
+      .then(response => {
+        dispatch({
+          type: FETCH_TASK,
           payload: response
         });
       })

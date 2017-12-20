@@ -35,8 +35,13 @@ public class TaskController {
   }
 
   @PutMapping("/{id}")
-  TaskDto update(@PathVariable("id") String id, @Valid @RequestBody TaskDto dto) {
+  TaskDto update(@PathVariable("id") Long id, @Valid @RequestBody TaskDto dto) {
     return taskService.update(id, dto);
+  }
+
+  @GetMapping("/{id}")
+  TaskDto findOne(@PathVariable("id") Long id) {
+    return taskService.findOne(id);
   }
 
   @GetMapping

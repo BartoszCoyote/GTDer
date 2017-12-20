@@ -8,7 +8,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
   Task findByName(String name);
 
-  Task findById(String id);
+  Task findById(Long id);
 
   void deleteById(String id);
 

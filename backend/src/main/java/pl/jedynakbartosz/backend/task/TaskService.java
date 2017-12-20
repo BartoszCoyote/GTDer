@@ -53,10 +53,16 @@ public class TaskService {
   }
 
   @Transactional
-  public TaskDto update(String id, TaskDto dto) {
+  public TaskDto update(Long id, TaskDto dto) {
     Task task = taskRepository.findById(id);
     task.setDescription(dto.getDescription());
     task.setName(dto.getName());
+    return taskMapper.map(task);
+  }
+
+  @Transactional
+  public TaskDto findOne(Long id) {
+    Task task = taskRepository.findById(id);
     return taskMapper.map(task);
   }
 
