@@ -3,6 +3,7 @@ import axios from 'axios';
 import {
   AUTH_USER,
   AUTHENTICATION_ERROR,
+  REGISTER_USER,
   FETCH_TASKS,
   UNAUTH_USER,
   POST_TASK,
@@ -32,8 +33,8 @@ export function signupUser(values, history) {
   return async (dispatch) => {
     axios.post('http://localhost:8080/api/user', values)
       .then(response => {
-        dispatch({ type: AUTH_USER });
-        history.push('/dashboard');
+        dispatch({ type: REGISTER_USER });
+        history.push('/signin');
       })
       .catch(() => {
         dispatch({
