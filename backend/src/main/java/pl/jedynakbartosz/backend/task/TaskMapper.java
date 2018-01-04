@@ -11,6 +11,7 @@ public class TaskMapper {
     dto.setDescription(task.getDescription());
     dto.setId(task.getId());
     dto.setProject(task.getProject());
+    dto.setSelectedDay(task.getSelectedDay());
 
     return dto;
   }
@@ -26,6 +27,7 @@ public class TaskMapper {
     task.setName(dto.getName());
     task.setDescription(dto.getDescription());
     task.setProject(dto.getProject());
+    task.setSelectedDay(dto.getSelectedDay());
     return task;
   }
 }

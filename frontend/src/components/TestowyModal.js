@@ -6,8 +6,26 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router'
 import './TestowyModal.css';
 import * as actions from '../action';
+import PropTypes from 'prop-types'
+import 'react-day-picker/lib/style.css';
+
+import DayPicker from 'react-day-picker';
 
 class TestowyModal extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.state = {
+      selectedDay: "No date",
+    };
+  }
+  handleDayClick(day, { selected }) {
+
+    this.setState({
+      selectedDay: selected ? undefined : day,
+    });
+  }
 
   errorMessage() {
     if (this.props.errorMessage) {
@@ -23,9 +41,7 @@ class TestowyModal extends Component {
 
   onSubmit(values) {
 
-
-    this.props.actions.postNewTask(values, this.props.history);
-
+ this.props.actions.postNewTask(this.props.history, { ...values, selectedDay: this.state.selectedDay });
   }
 
 
@@ -127,6 +143,12 @@ class TestowyModal extends Component {
                   component={this.renderSelect}
 
                 />
+                <div>
+                  <DayPicker
+                    selectedDays={this.state.selectedDay}
+                    onDayClick={this.handleDayClick}
+                  />
+                </div>
                 <button type="submit" className="btn btn-primary"> Login</button>
 
 

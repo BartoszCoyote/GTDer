@@ -99,7 +99,7 @@ export function getTaskByID(value) {
 }
 
 
-export function postNewTask(values, history) {
+export function postNewTask(history, values) {
   let token = localStorage.getItem('token');
   console.log(history)
   return async (dispatch) => {

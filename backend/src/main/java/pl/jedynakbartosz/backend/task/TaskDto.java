@@ -18,5 +18,7 @@ public class TaskDto {
   @Length(min = 1, max = 500)
   private String description;
 
+  private String selectedDay;
+
   private Project project;
 }

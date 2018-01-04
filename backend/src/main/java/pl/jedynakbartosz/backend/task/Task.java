@@ -42,6 +42,9 @@ public class Task {
   @JoinColumn(name = "PROJECT_ID")
   private Project project;
 
+  @Column(name = "SELECTEDDAY", length = 500, nullable = false)
+  private String selectedDay;
+
   @ManyToOne
   @JoinColumn(referencedColumnName = "ID", name = "user_id")
   private User user;
