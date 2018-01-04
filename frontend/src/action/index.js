@@ -35,6 +35,7 @@ export function signupUser(values, history) {
     axios.post('http://localhost:8080/api/user', values)
       .then(response => {
         dispatch({ type: REGISTER_USER });
+        localStorage.clear();
         history.push('/signin');
       })
       .catch(() => {
