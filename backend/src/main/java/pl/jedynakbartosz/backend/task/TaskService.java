@@ -1,6 +1,8 @@
 package pl.jedynakbartosz.backend.task;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -48,6 +50,21 @@ public class TaskService {
         .findAll()
         .stream()
         .filter(task -> task.getUser() == user)
+        .map(taskMapper::map)
+        .collect(Collectors.toList());
+  }
+
+  @Transactional
+  public List<TaskDto> findALLToday(Principal principal) {
+    LocalDate localDate = LocalDate.now();
+    String today = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate).replace("/", "-");
+
+    User user = userRepository.findByUsername(principal.getName());
+    return taskRepository
+        .findAll()
+        .stream()
+        .filter(task -> task.getUser() == user)
+        .filter(task -> task.getSelectedDay().equals(today))
         .map(taskMapper::map)
         .collect(Collectors.toList());
   }

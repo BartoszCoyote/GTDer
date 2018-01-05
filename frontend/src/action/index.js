@@ -8,7 +8,8 @@ import {
   FETCH_TASKS,
   UNAUTH_USER,
   POST_TASK,
-  FETCH_PROJECTS
+  FETCH_PROJECTS,
+  FETCH_TASKS_TODAY
 } from './types';
 
 export function signinUser(values, history) {
@@ -67,6 +68,29 @@ export function getTasks(value) {
       .then(response => {
         dispatch({
           type: FETCH_TASKS,
+          payload: response
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+
+export function getTasksToday() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/task/today', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_TASKS_TODAY,
           payload: response
         });
       })

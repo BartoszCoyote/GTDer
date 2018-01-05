@@ -49,6 +49,11 @@ public class TaskController {
     return taskService.findALl(principal);
   }
 
+  @GetMapping("/today")
+  List<TaskDto> findAllToday(Principal principal) {
+    return taskService.findALLToday(principal);
+  }
+
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   void delete(@PathVariable("id") String id) {

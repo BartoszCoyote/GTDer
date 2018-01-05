@@ -16,6 +16,10 @@ import _ from 'lodash';
 class Menu extends Component {
 
 
+
+  today(){
+    this.props.getTasksToday();
+  }
   klik(value) {
     this.props.getTasks(value);
   }
@@ -47,7 +51,7 @@ class Menu extends Component {
           <div className="menu">
             <List>
               <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} onClick={this.klik.bind(this, "Inbox")} />
-              <ListItem primaryText="Today" leftIcon={<ContentSend />} />
+              <ListItem primaryText="Today" leftIcon={<ContentSend />} onClick={this.today.bind(this)} />
               <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} />
               <ListItem
                 primaryText="Projects"

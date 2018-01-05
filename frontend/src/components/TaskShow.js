@@ -38,9 +38,11 @@ class TaskShow extends Component {
             <div className="task-list">
 
 
-                <h1>Name</h1>{this.props.task.name},
-            <h1>description</h1> {this.props.task.description},
-            <h1>project name </h1> {this.props.task.project.name}
+                <h1>Name</h1>{this.props.task.name}
+                <h1>Selected Day</h1>{this.props.task.selectedDay}
+
+                <h1>description</h1> {this.props.task.description}
+                <h1>project name </h1> {this.props.task.project.name}
 
 
 
