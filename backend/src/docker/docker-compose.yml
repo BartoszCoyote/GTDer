@@ -1,0 +1,17 @@
+version: "3.1"
+services:
+ mysql:
+    build: ../../../../../docker/xd/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=adaptris
+      - MYSQL_DATABASE=adaptris
+      - MYSQL_USER=adaptris
+      - MYSQL_PASSWORD=adaptris
+      - MYSQL_ROOT_HOST=%
+    ports:
+      - "3307:3306"
+ apka:
+    build: ./apka
+     ports:
+      - "3307:3306"
+    
