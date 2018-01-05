@@ -7,3 +7,4 @@ export const FETCH_PROJECTS = 'fetch_projects';
 export const REGISTER_USER = 'register_user';
 export const FETCH_TASK = 'fetch_task';
 export const FETCH_TASKS_TODAY = 'fetch_tasks_today'
+export const UPDATE_TASK = 'update_task'

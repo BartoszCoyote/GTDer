@@ -48,9 +48,17 @@ class TaskShow extends Component {
             </div>
         );
     }
+
     clickSave() {
         this.changeComponentState('EDIT');
         console.log("siema")
+        console.log(this.props.editTask)
+        this.props.editTask(this.props.match.params.id, this.props.history, {
+
+            name: this.state.name,
+            description: this.state.description
+        });
+
     }
     renderEdit() {
 

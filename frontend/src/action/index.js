@@ -9,7 +9,8 @@ import {
   UNAUTH_USER,
   POST_TASK,
   FETCH_PROJECTS,
-  FETCH_TASKS_TODAY
+  FETCH_TASKS_TODAY,
+  UPDATE_TASK
 } from './types';
 
 export function signinUser(values, history) {
@@ -164,6 +165,32 @@ export function getProjects() {
           type: FETCH_PROJECTS,
           payload: response
         });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function editTask(id, history, values) {
+  let token = localStorage.getItem('token');
+  console.log(history)
+  return async (dispatch) => {
+    axios({
+      method: 'put',
+      url: 'http://localhost:8080/api/task/' + id,
+      data: values,
+      headers: {
+        withCredentials: true,
+        'Authorization': 'Bearer ' + token
+      }
+
+    })
+      .then(response => {
+        dispatch({ type: UPDATE_TASK });
+        history.push('/dashboard');
+
+
       })
       .catch(e => {
         console.log(e);

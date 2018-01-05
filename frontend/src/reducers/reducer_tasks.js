@@ -1,4 +1,4 @@
-import { FETCH_TASKS, POST_TASK, FETCH_TASK, FETCH_TASKS_TODAY } from '../action/types';
+import { FETCH_TASKS, POST_TASK, FETCH_TASK, FETCH_TASKS_TODAY,UPDATE_TASK } from '../action/types';
 
 export default function (state = {}, action) {
 
@@ -12,6 +12,8 @@ export default function (state = {}, action) {
       return action.payload.data;
 
     case POST_TASK:
+      return state;
+    case UPDATE_TASK:
       return state;
 
 
