@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router'
 import './TestowyModal.css';
 import * as actions from '../action';
-import PropTypes from 'prop-types'
 import 'react-day-picker/lib/style.css';
 
 import DayPicker from 'react-day-picker';
@@ -41,7 +40,7 @@ class TestowyModal extends Component {
 
   onSubmit(values) {
 
- this.props.actions.postNewTask(this.props.history, { ...values, selectedDay: this.state.selectedDay });
+    this.props.actions.postNewTask(this.props.history, { ...values, selectedDay: this.state.selectedDay });
   }
 
 

@@ -2,18 +2,84 @@ import React, { Component } from 'react';
 import './TaskShow.css';
 import * as actions from '../action';
 import { connect } from 'react-redux';
-
 import { Button } from 'react-bootstrap';
-
-
-
-
 
 class TaskShow extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "",
+            description: "",
+            current: 'EDIT'
+        }
+    }
+
+    changeComponentState(newState) {
+        this.setState({
+            current: newState,
+        });
+    }
+
+
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            name: nextProps.task.name,
+            description: nextProps.task.description
+        });
+    }
+
+    renderFull() {
+
+
+
+
+
+        const { name, description } = this.state;
+        return (
+            <div>
+                <h1>
+                    {name} {description}
+                </h1>
+                <Button onClick={this.changeComponentState.bind(this, 'FULL')}>EDIT</Button>
+                <Button onClick={this.close.bind(this)}>Close</Button>
+
+            </div>
+        );
+    }
+    clickSave() {
+        this.changeComponentState('EDIT');
+        console.log("siema")
+    }
+    renderEdit() {
+
+
+
+        const { name, description } = this.state;
+        return (
+            <div>
+                <div>
+                    <textarea placeholder={name} onChange={event => this.setState({ name: event.target.value })} />
+
+
+
+                </div>
+                <div>
+                    <textarea placeholder={description} onChange={event => this.setState({ description: event.target.value })} />/>
+                    <button onClick={() => this.clickSave()}>
+                        Save
+        </button>
+                    <Button onClick={this.close.bind(this)}>Close</Button>
+                </div>
+            </div >
+        );
+    }
 
     componentDidMount() {
         this.props.getTaskByID(this.props.match.params.id);
+
+
 
     }
 
@@ -22,40 +88,26 @@ class TaskShow extends Component {
     }
 
     render() {
+
+
         if (this.props.task.project === undefined) {
             return (
                 <div>Loading</div>
             )
         }
-        console.log(this.props.task.project)
-
-        return (
 
 
+        const { current } = this.state;
 
+        if (current === 'EDIT') {
+            return this.renderFull();
+        } else if (current === 'FULL') {
+            return this.renderEdit();
+        }
 
-
-            <div className="task-list">
-
-
-                <h1>Name</h1>{this.props.task.name}
-                <h1>Selected Day</h1>{this.props.task.selectedDay}
-
-                <h1>description</h1> {this.props.task.description}
-                <h1>project name </h1> {this.props.task.project.name}
-
-
-
-
-
-                <Button onClick={this.close.bind(this)}>Close</Button>
-
-
-
-
-            </div>
-        );
+        return null;
     }
+
 }
 
 
