@@ -1,13 +1,19 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+
 
 class Header extends Component {
   navbarLinks() {
     if (this.props.authenticated) {
       return [
         <ul className="nav nav-tabs">
-          <div className="center">
+
+
+          <div className="center" onClick={() => {
+            this.props.history.push('/dashboard');
+          }}>
             <li className="nav-item" key="DashBoard"><Link to="/dashboard">
             </Link></li>
           </div>
@@ -18,7 +24,9 @@ class Header extends Component {
     }
     return [
       <ul className="nav nav-tabs">
-        <div className="center">
+        <div className="center" onClick={() => {
+          this.props.history.push('/dashboard');
+        }}>
           <li className="nav-item test" key="DashBoardInny"><Link to="/dashboard">
           </Link></li>
         </div>
@@ -31,6 +39,7 @@ class Header extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="barFull">
         <div className="bar">
@@ -47,4 +56,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));
