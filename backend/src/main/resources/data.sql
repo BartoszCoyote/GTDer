@@ -9,4 +9,5 @@ INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (1, 2);
 INSERT INTO user_authority (USER_ID, AUTHORITY_ID) VALUES (2, 1);
 
 
-INSERT INTO `project` (id,NAME) VALUES (0,"Inbox");
+INSERT INTO `project` (id,NAME) VALUES (1,"Inbox");
+INSERT INTO `project` (id,NAME) VALUES (2,"Trash");
