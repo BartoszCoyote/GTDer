@@ -37,7 +37,7 @@ public class Task {
   @Column(name = "DESCRIPTION", length = 500, nullable = false)
   private String description;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.PERSIST)
   @JsonIgnore
   @JoinColumn(name = "PROJECT_ID")
   private Project project;

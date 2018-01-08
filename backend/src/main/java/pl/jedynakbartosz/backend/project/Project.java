@@ -29,7 +29,7 @@ public class Project {
   private String name;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST, orphanRemoval = true)
   private List<Task> tasks;
 
   Project() {}

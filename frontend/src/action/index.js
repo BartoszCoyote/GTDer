@@ -10,7 +10,8 @@ import {
   POST_TASK,
   FETCH_PROJECTS,
   FETCH_TASKS_TODAY,
-  UPDATE_TASK
+  UPDATE_TASK,
+  DELETE_TASK
 } from './types';
 
 export function signinUser(values, history) {
@@ -188,6 +189,30 @@ export function editTask(id, history, values) {
     })
       .then(response => {
         dispatch({ type: UPDATE_TASK });
+        history.push('/dashboard');
+
+
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function deleteTask(id, history) {
+  let token = localStorage.getItem('token');
+  return async (dispatch) => {
+    axios({
+      method: 'delete',
+      url: 'http://localhost:8080/api/task/' + id,
+      headers: {
+        withCredentials: true,
+        'Authorization': 'Bearer ' + token
+      }
+
+    })
+      .then(response => {
+        dispatch({ type: DELETE_TASK });
         history.push('/dashboard');
 
 

@@ -16,7 +16,7 @@ class TestowyModal extends Component {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
-      selectedDay: "No date",
+      selectedDay: "No selected date",
     };
   }
   handleDayClick(day, { selected }) {
@@ -39,7 +39,7 @@ class TestowyModal extends Component {
 
 
   onSubmit(values) {
-
+    console.log(this.state.selectedDay)
     this.props.actions.postNewTask(this.props.history, { ...values, selectedDay: this.state.selectedDay });
   }
 

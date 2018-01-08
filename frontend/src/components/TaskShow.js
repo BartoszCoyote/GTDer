@@ -22,7 +22,14 @@ class TaskShow extends Component {
     }
 
 
+    deleteConfirm() {
+        if (window.confirm("Are you sure u want to delete task?") === true)
+            this.props.deleteTask(this.props.match.params.id, this.props.history)
 
+        else console.log("nie siema")
+
+
+    }
     componentWillReceiveProps(nextProps) {
         this.setState({
             name: nextProps.task.name,
@@ -44,6 +51,8 @@ class TaskShow extends Component {
                 </h1>
                 <Button onClick={this.changeComponentState.bind(this, 'FULL')}>EDIT</Button>
                 <Button onClick={this.close.bind(this)}>Close</Button>
+                <Button onClick={this.deleteConfirm.bind(this)}>Delete</Button>
+
 
             </div>
         );
@@ -79,6 +88,8 @@ class TaskShow extends Component {
                         Save
         </button>
                     <Button onClick={this.close.bind(this)}>Close</Button>
+                    <Button onClick={this.deleteConfirm.bind(this)}>Delete</Button>
+
                 </div>
             </div >
         );
