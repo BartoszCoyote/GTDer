@@ -189,7 +189,7 @@ export function editTask(id, history, values) {
     })
       .then(response => {
         dispatch({ type: UPDATE_TASK });
-        history.push('/dashboard');
+        window.location.reload();
 
 
       })
