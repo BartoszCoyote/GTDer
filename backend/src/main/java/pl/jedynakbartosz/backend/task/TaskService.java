@@ -87,4 +87,17 @@ public class TaskService {
   public void delete(Long id) {
     taskRepository.deleteById(id);
   }
+
+  @Transactional
+  public TaskDto changeProject(Long id) {
+
+    Long idTrash = Long.valueOf(2);
+    Project project = projectRepository.findById(idTrash);
+    Task task = taskRepository.findById(id);
+    if (task.getProject() == project) {
+      taskRepository.deleteById(id);
+    }
+    task.setProject(project);
+    return taskMapper.map(task);
+  }
 }

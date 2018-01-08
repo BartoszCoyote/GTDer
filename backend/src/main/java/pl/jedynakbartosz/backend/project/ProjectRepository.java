@@ -8,7 +8,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
   Project findByName(String name);
 
-  Project findById(String id);
+  Project findById(Long id);
 
   void deleteById(String id);
 
