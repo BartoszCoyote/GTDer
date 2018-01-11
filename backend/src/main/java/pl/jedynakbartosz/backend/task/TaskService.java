@@ -100,4 +100,37 @@ public class TaskService {
     task.setProject(project);
     return taskMapper.map(task);
   }
-}
+
+  @Transactional
+  public List<TaskDto> find7days(Principal principal) {
+
+
+    LocalDate localDate = LocalDate.now();
+    String today = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate).replace("/", "-");
+    String today1 = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate.plusDays(1)).replace("/", "-");
+    String today2 = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate.plusDays(2)).replace("/", "-");
+    String today3 = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate.plusDays(3)).replace("/", "-");
+    String today4 = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate.plusDays(4)).replace("/", "-");
+    String today5 = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate.plusDays(5)).replace("/", "-");
+    String today6 = DateTimeFormatter.ofPattern("yyyy/MM/dd").format(localDate.plusDays(6)).replace("/", "-");
+
+    System.out.println(localDate.plusDays(1));
+    User user = userRepository.findByUsername(principal.getName());
+    return taskRepository
+            .findAll()
+            .stream()
+            .filter(task -> task.getUser() == user)
+            .filter(task -> task.getSelectedDay().equals(today)
+                    || task.getSelectedDay().equals(today1)
+                    || task.getSelectedDay().equals(today2)
+                    || task.getSelectedDay().equals(today3)
+                    || task.getSelectedDay().equals(today4)
+                    || task.getSelectedDay().equals(today5)
+                    || task.getSelectedDay().equals(today6))
+           .map(taskMapper::map)
+            .collect(Collectors.toList());
+  }
+
+  }
+
+

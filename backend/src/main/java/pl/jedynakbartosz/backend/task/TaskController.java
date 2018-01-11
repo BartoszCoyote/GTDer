@@ -44,6 +44,10 @@ public class TaskController {
     return taskService.findOne(id);
   }
 
+  @GetMapping("/7days")
+  List<TaskDto> find7days(Principal principal)
+  {return taskService.find7days(principal);
+  }
   @GetMapping
   List<TaskDto> findAll(Principal principal) {
     return taskService.findALl(principal);

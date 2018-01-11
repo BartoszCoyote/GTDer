@@ -1,5 +1,7 @@
 package pl.jedynakbartosz.backend.user;
 
+import java.awt.print.PrinterIOException;
+import java.security.Principal;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,4 +35,7 @@ public class UserController {
   List<UserDto> findAll() {
     return userService.findAll();
   }
+
+  @GetMapping("/who")
+  String who(Principal principal){ return userService.who(principal);}
 }

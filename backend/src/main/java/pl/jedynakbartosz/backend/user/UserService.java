@@ -1,5 +1,6 @@
 package pl.jedynakbartosz.backend.user;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -24,5 +25,10 @@ public class UserService {
   @Transactional
   public List<UserDto> findAll() {
     return userRepository.findAll().stream().map(userMapper::map).collect(Collectors.toList());
+  }
+
+  @Transactional
+  public String who(Principal principal){
+    return principal.getName();
   }
 }
