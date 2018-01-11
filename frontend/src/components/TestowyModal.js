@@ -113,13 +113,13 @@ class TestowyModal extends Component {
 
 
           >
-            Launch demo modal
+            Add task
             </Button>
         </div>
 
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title></Modal.Title>
           </Modal.Header>
           <Modal.Body>
 
@@ -148,7 +148,7 @@ class TestowyModal extends Component {
                     onDayClick={this.handleDayClick}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary"> Login</button>
+                <button type="submit" className="btn btn-primary"> Add</button>
 
 
                 {this.errorMessage()}
