@@ -1,5 +1,6 @@
 package pl.jedynakbartosz.backend.project;
 
+import java.security.Principal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -39,7 +40,7 @@ public class ProjectController {
   }
 
   @GetMapping("/{name}")
-  List<TaskDto> findAllwithTask(@PathVariable("name") String name) {
-    return projectService.showAllTask(name);
+  List<TaskDto> findAllwithTask(@PathVariable("name") String name, Principal principal) {
+    return projectService.showAllTask(name,principal);
   }
 }
