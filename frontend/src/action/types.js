@@ -9,3 +9,5 @@ export const FETCH_TASK = 'fetch_task';
 export const FETCH_TASKS_TODAY = 'fetch_tasks_today'
 export const UPDATE_TASK = 'update_task'
 export const DELETE_TASK = 'delete_task'
+export const FETCH_TASK7 = 'fetch_task7'
+export const FETCH_USER = 'fetch_user'
