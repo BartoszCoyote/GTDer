@@ -11,7 +11,9 @@ import {
   FETCH_PROJECTS,
   FETCH_TASKS_TODAY,
   UPDATE_TASK,
-  DELETE_TASK
+  DELETE_TASK,
+  FETCH_TASK7,
+  FETCH_USER
 } from './types';
 
 export function signinUser(values, history) {
@@ -216,6 +218,50 @@ export function deleteTask(id, history) {
         history.push('/dashboard');
 
 
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function getTask7days() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/task/7days', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_TASK7,
+          payload: response
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function whosLOgged() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/user/who', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_USER,
+          payload: response
+        });
       })
       .catch(e => {
         console.log(e);

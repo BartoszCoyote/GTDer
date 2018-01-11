@@ -20,6 +20,9 @@ class Menu extends Component {
   today(){
     this.props.getTasksToday();
   }
+  weekdays(){
+      this.props.getTask7days();
+  }
   klik(value) {
     this.props.getTasks(value);
   }
@@ -52,7 +55,7 @@ class Menu extends Component {
             <List>
               <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} onClick={this.klik.bind(this, "Inbox")} />
               <ListItem primaryText="Today" leftIcon={<ContentSend />} onClick={this.today.bind(this)} />
-              <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} />
+              <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} onClick={this.weekdays.bind(this)} />
               <ListItem
                 primaryText="Projects"
                 leftIcon={<ContentInbox />}

@@ -2,12 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
+import * as actions from '../action';
 
 
 class Header extends Component {
+
+  componentWillMount(){
+    this.props.whosLOgged();
+    console.log("kto?")
+  }
+
   navbarLinks() {
+    const user = this.props.user;
     if (this.props.authenticated) {
+
       return [
+
         <ul className="nav nav-tabs">
 
 
@@ -17,6 +27,8 @@ class Header extends Component {
             <li className="nav-item" key="DashBoard"><Link to="/dashboard">
             </Link></li>
           </div>
+          <li>Logged as {user.toString()}</li>
+
           <li className="nav-item" key="signout"><Link to="/signout">Sign
             out</Link></li>
         </ul>
@@ -32,6 +44,7 @@ class Header extends Component {
         </div>
         <li className="nav-item" key="signin"><Link to="/signin">Sign in</Link>
         </li>
+
         <li className="nav-item" key="signup"><Link to="/signup">Sign up</Link>
         </li>
       </ul>
@@ -52,8 +65,9 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    authenticated: state.auth.authenticated
+    authenticated: state.auth.authenticated,
+    user: state.user
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(connect(mapStateToProps,actions)(Header));
