@@ -7,6 +7,7 @@ import { withRouter } from 'react-router'
 import './TestowyModal.css';
 import * as actions from '../action';
 import 'react-day-picker/lib/style.css';
+import _ from 'lodash';
 
 import DayPicker from 'react-day-picker';
 
@@ -15,9 +16,29 @@ class TestowyModal extends Component {
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
+    this.renderSelect = this.renderSelect.bind(this);
+
+
     this.state = {
       selectedDay: "No selected date",
+      projects: []
     };
+  }
+
+  componentDidMount(){
+    this.props.actions.getProjects()
+    this.setState({projects: this.props.project})
+
+    
+  
+  }
+
+  componentWillReceiveProps(nextProps){
+
+    this.setState({projects:nextProps.project})
+
+ 
+
   }
   handleDayClick(day, { selected }) {
 
@@ -66,18 +87,23 @@ class TestowyModal extends Component {
     );
   }
 
+
+	renderOptions()
+{
+	const projects = this.state.projects;
+  return projects.map(project => <option value={project.name}>{project.name}</option>);
+}
+
+
   renderSelect(field) {
+    console.log(this)
     return (
       <div>
         <label>{field.label}</label>
         <select
           className="form-control"
-          type="text"
-          {...field.input}>
-          <option value=""></option>
-          <option value="grapefruit">Grapefruit</option>
-          <option value="lime">Lime</option>
-          <option value="coconut">Coconut</option>
+          type="text">
+        {this.renderOptions()}
         </select>
       </div>
 
@@ -235,6 +261,7 @@ function validate(values) {
 function mapStateToProps(state) {
   return {
     task: state.form,
+    project: state.project,
     errorMessage: state.auth.error
   };
 }
