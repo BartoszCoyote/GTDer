@@ -38,6 +38,25 @@ class Signin extends Component {
     );
   }
 
+  renderPasswordField(field) {
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-error' : ''}`;
+
+    return (
+      <div className={className}>
+        <label>{field.label}</label>
+        <input
+          className="form-control"
+          type="password"
+          {...field.input}
+        />
+        <div className="text-help">
+          {touched ? error : ''}
+        </div>
+      </div>
+    );
+  }
+
   onSubmit(values) {
     console.log(this.props)
     this.props.actions.signinUser(values, this.props.history);
@@ -60,7 +79,7 @@ class Signin extends Component {
             <Field
               label="Password:"
               name="password"
-              component={this.renderField}
+              component={this.renderPasswordField}
             />
             <button type="submit" className="btn btn-primary"> Login</button>
           </form>
