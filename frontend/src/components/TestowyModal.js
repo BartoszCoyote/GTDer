@@ -39,8 +39,11 @@ class TestowyModal extends Component {
 
 
   onSubmit(values) {
-    console.log(this.state.selectedDay)
     this.props.actions.postNewTask(this.props.history, { ...values, selectedDay: this.state.selectedDay });
+  }
+
+  onSubmitProject(values) {
+    this.props.actions.postNewProject(values);
   }
 
 
@@ -96,6 +99,15 @@ class TestowyModal extends Component {
     this.setState({ showModal: true });
   }
 
+
+  openProject(){
+    this.setState({showModalProject: true})
+  }
+
+  closeProject(){
+    this.setState({showModalProject: false})
+  }
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -114,6 +126,16 @@ class TestowyModal extends Component {
 
           >
             Add task
+            </Button>
+            <Button
+            bsStyle="danger"
+            bsSize="large"
+            onClick={this.openProject.bind(this)}
+            className="button"
+
+
+          >
+            Add project
             </Button>
         </div>
 
@@ -160,6 +182,37 @@ class TestowyModal extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.close.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+
+         <Modal show={this.state.showModalProject} onHide={this.closeProject.bind(this)}>
+          <Modal.Header closeButton>
+            <Modal.Title></Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+
+            <div className="loginForm">
+              <form onSubmit={handleSubmit(this.onSubmitProject.bind(this))}>
+               
+                <Field
+                  label="name:"
+                  name="name"
+                  component={this.renderField}
+                />
+            
+                <button type="submit" className="btn btn-primary"> Add</button>
+
+
+                {this.errorMessage()}
+              </form>
+            </div>
+
+
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.closeProject.bind(this)}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>

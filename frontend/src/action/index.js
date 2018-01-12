@@ -13,7 +13,8 @@ import {
   UPDATE_TASK,
   DELETE_TASK,
   FETCH_TASK7,
-  FETCH_USER
+  FETCH_USER,
+  POST_PROJECT
 } from './types';
 
 export function signinUser(values, history) {
@@ -262,6 +263,31 @@ export function whosLOgged() {
           type: FETCH_USER,
           payload: response
         });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function postNewProject(values) {
+  let token = localStorage.getItem('token');
+  return async (dispatch) => {
+    axios({
+      method: 'post',
+      url: 'http://localhost:8080/api/project',
+      data: values,
+      headers: {
+        withCredentials: true,
+        'Authorization': 'Bearer ' + token
+      }
+
+    })
+      .then(response => {
+        dispatch({ type: POST_PROJECT });
+        window.location.reload();
+
+
       })
       .catch(e => {
         console.log(e);

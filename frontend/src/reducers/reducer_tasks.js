@@ -1,4 +1,4 @@
-import { FETCH_TASKS, POST_TASK, FETCH_TASK, FETCH_TASKS_TODAY, UPDATE_TASK, DELETE_TASK,FETCH_TASK7 } from '../action/types';
+import { FETCH_TASKS, POST_TASK, FETCH_TASK, FETCH_TASKS_TODAY, UPDATE_TASK, DELETE_TASK,FETCH_TASK7,POST_PROJECT } from '../action/types';
 
 export default function (state = {}, action) {
 
@@ -20,6 +20,8 @@ export default function (state = {}, action) {
       return state;
     case DELETE_TASK:
       return state;
+    case POST_PROJECT:
+    return state;
 
 
     default:
