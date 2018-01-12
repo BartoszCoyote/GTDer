@@ -185,18 +185,18 @@ class TestowyModal extends Component {
 
             <div className="loginForm">
               <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field
-                  label="description:"
-                  name="description"
-                  component={this.renderField}
-                />
-                <Field
-                  label="name:"
+              <Field
+                  label="Name:"
                   name="name"
                   component={this.renderField}
                 />
                 <Field
-                  label="project:"
+                  label="Description:"
+                  name="description"
+                  component={this.renderField}
+                />
+                <Field
+                  label="Project:"
                   name="project"
                   component={this.renderSelect}
 
@@ -207,7 +207,7 @@ class TestowyModal extends Component {
                     onDayClick={this.handleDayClick}
                   />
                 </div>
-                <button type="submit" className="btn btn-primary"> Add</button>
+                <button type="submit" className="btn btn-primary">Add Task</button>
 
 
                 {this.errorMessage()}
@@ -233,7 +233,7 @@ class TestowyModal extends Component {
               <form onSubmit={handleSubmit(this.onSubmitProject.bind(this))}>
                
                 <Field
-                  label="name:"
+                  label="Name:"
                   name="name"
                   component={this.renderField}
                 />
@@ -241,8 +241,9 @@ class TestowyModal extends Component {
         color={ this.state.color }
         onChangeComplete={ this.handleChangeComplete }
       />
-            
-                <button type="submit" className="btn btn-primary"> Add</button>
+            <br />
+
+                <button type="submit" className="btn btn-primary">Add Project</button>
 
 
                 {this.errorMessage()}
