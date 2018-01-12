@@ -28,6 +28,9 @@ export function signinUser(values, history) {
         dispatch({ type: AUTH_USER });
         localStorage.setItem('token', response.data.token);
         history.push('/dashboard');
+        window.location.reload();
+
+
       })
       .catch(() => {
         dispatch({

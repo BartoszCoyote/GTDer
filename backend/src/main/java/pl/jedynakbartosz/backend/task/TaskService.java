@@ -98,6 +98,7 @@ public class TaskService {
       taskRepository.deleteById(id);
     }
     task.setProject(project);
+    task.setSelectedDay("2118-01-12");
     return taskMapper.map(task);
   }
 

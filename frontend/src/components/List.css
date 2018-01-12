@@ -11,10 +11,15 @@
 
 
 
-
 }
 
 .list-group-item{
   background-color: transparent;
   background-color: ghostwhite;
+}
+
+.projecttask
+{
+  position: relative;
+  margin-left:90%;
 }

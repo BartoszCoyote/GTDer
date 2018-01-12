@@ -18,21 +18,35 @@ class List extends Component {
 
 
   renderTasks() {
-    return _.map(this.props.task, task => {
-  
+  	const { task } = this.props;
+    
+    if (!task || !Array.isArray(task)) {
+    	return null;
+    }
+    
+    return task.map(({ id, project, name, description }) => {
+      const style = { color: project.color };
+      
       return (
-        <li className="list-group-item" key={task.id}>
-          <Link to={"task/" + task.id}>
-            <span className="pull-xs-right">{task.name} </span>
-            <strong>{task.description} </strong>
-            
-
+        <div>
+        <li className="list-group-item" key={id}>
+          <Link to={`task/${id}`}>
+            <h2><span className="pull-xs-right" style={style}>
+              { name }
+            </span>
+            </h2>
+            <div className="projecttask">
+            <strong style={style}>
+              <h3>{ project.name }</h3>
+            </strong>
+            </div>
           </Link>
-
         </li>
+        </div>
       );
     });
   }
+
 
   render() {
    
