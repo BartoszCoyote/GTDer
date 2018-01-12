@@ -65,7 +65,7 @@ class Menu extends Component {
                   this.renderTasks()
                 ]}
               />
-              <ListItem
+              {/* <ListItem
                 primaryText="Labels"
                 leftIcon={<ContentInbox />}
                 initiallyOpen={false}
@@ -83,7 +83,7 @@ class Menu extends Component {
                     primaryTogglesNestedList={true}
                   />
                 ]}
-              />
+              /> */}
               <div className="bottom">
                 <ListItem primaryText="Trash" leftIcon={<ActionDelete />} onClick={this.klik.bind(this, "Trash")}
 
