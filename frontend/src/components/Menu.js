@@ -40,7 +40,9 @@ class Menu extends Component {
 
   renderTasks() {
     return _.map(this.props.project, project => {
+      if(project.id !==1 && project.id !==2){
       return (
+        
         <ListItem
           key={project.id}
           primaryText={project.name}
@@ -63,6 +65,8 @@ class Menu extends Component {
 
         />
       );
+    }
+    
     });
   }
 
