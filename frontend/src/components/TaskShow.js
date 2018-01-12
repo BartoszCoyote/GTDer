@@ -11,6 +11,8 @@ class TaskShow extends Component {
         this.state = {
             name: "",
             description: "",
+            selectedDay: "",
+            project:"",
             current: 'EDIT'
         }
     }
@@ -20,6 +22,7 @@ class TaskShow extends Component {
             current: newState,
         });
     }
+
 
 
     deleteConfirm() {
@@ -33,7 +36,9 @@ class TaskShow extends Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             name: nextProps.task.name,
-            description: nextProps.task.description
+            description: nextProps.task.description,
+            selectedDay: nextProps.task.selectedDay,
+            project: nextProps.task.project.name
         });
     }
 
@@ -43,18 +48,35 @@ class TaskShow extends Component {
 
 
 
-        const { name, description } = this.state;
-        return (
-            <div>
+        const { name, description,selectedDay,project } = this.state;
+        return ( 
+        <div className="container">
+        <div className="loginForm">
+        <div>
+                
                 <h1>
-                    {name} {description}
+                    Name: {name} 
                 </h1>
-                <Button onClick={this.changeComponentState.bind(this, 'FULL')}>EDIT</Button>
-                <Button onClick={this.close.bind(this)}>Close</Button>
-                <Button onClick={this.deleteConfirm.bind(this)}>Delete</Button>
+                <h1>
+                    Description: {description} 
+                </h1>
+                <h1>
+                    Date: {selectedDay} 
+                </h1>
+                <h1>
+                    Project: {project} 
+                </h1>
+                <center>
+                <Button className="btn btn-light" onClick={this.changeComponentState.bind(this, 'FULL')}>EDIT</Button>
 
-
+                <Button className="btn btn-info" onClick={this.close.bind(this)}>Close</Button>
+               <Button className="btn btn-danger" onClick={this.deleteConfirm.bind(this)}>Delete</Button>
+</center>
             </div>
+        </div>
+        </div>
+
+           
         );
     }
 

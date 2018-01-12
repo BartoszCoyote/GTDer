@@ -27,7 +27,7 @@ class Header extends Component {
             <li className="nav-item" key="DashBoard"><Link to="/dashboard">
             </Link></li>
           </div>
-          <li> <Link to={"/me"}>Logged as {user.toString()}</Link></li>
+          <li key="link"> <Link to={"/me"}>Logged as {user.toString()}</Link></li>
 
           <li className="nav-item" key="signout"><Link to="/signout">Sign
             out</Link></li>
