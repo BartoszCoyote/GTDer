@@ -1,55 +1,46 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../action';
 import './List.css';
-import { Link } from 'react-router-dom';
 
 
 class List extends Component {
-
-
-  constructor(props) {
-    super(props);
-   
-    this.state = {
-     tasks: []
-    };
-  }
-
-  componentWillReceiveProps(nextProps){
-    this.setState({tasks:nextProps.task})
-  }
   componentDidMount() {
-    var xd = 'Inbox';
-    this.props.getTasks(xd);
-    this.setState({tasks:this.props.task})
+    this.props.getTasks('Inbox');
   }
 
   renderTasks() {
-    return _.map(this.state.tasks, task => {
+  	const { task } = this.props;
+    
+    if (!task || !Array.isArray(task)) {
+    	return null;
+    }
+    
+    return task.map(({ id, project, name, description }) => {
+    	const style = { color: project.color };
+      
       return (
-        <li className="list-group-item" key={task.id}>
-          <Link to={"task/" + task.id}>
-            <span className="pull-xs-right" style={{color:task.project.color}}>{task.name} </span>
-            <strong style={{color:task.project.color}}>{task.description} </strong>
-            
-
+        <li className="list-group-item" key={id}>
+          <Link to={`task/${id}`}>
+            <span className="pull-xs-right" style={style}>
+              { name }
+            </span>
+            <strong style={style}>
+              { description }
+            </strong>
           </Link>
-
         </li>
       );
     });
   }
 
   render() {
-    console.log("siema")
-    console.log(this.state.tasks)
     return (
       <div className="task-list">
         <ul className="list-group">
-          {this.renderTasks()}
+          { this.renderTasks() }
         </ul>
       </div>
     );
