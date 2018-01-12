@@ -55,4 +55,10 @@ public class ProjectService {
         .map(taskMapper::map)
         .collect(Collectors.toList());
   }
+
+  @Transactional
+  public void delete(Long id) {
+    projectRepository.deleteById(id);
+  }
+
 }

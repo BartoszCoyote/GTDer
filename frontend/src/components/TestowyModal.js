@@ -8,6 +8,8 @@ import './TestowyModal.css';
 import * as actions from '../action';
 import 'react-day-picker/lib/style.css';
 import _ from 'lodash';
+import { SketchPicker } from 'react-color';
+
 
 import DayPicker from 'react-day-picker';
 
@@ -21,6 +23,7 @@ class TestowyModal extends Component {
 
     this.state = {
       selectedDay: "No selected date",
+      color: "FF0000",
       projects: []
     };
   }
@@ -32,6 +35,10 @@ class TestowyModal extends Component {
     
   
   }
+
+  handleChangeComplete = (color) => {
+    this.setState({ color: color.hex });
+  };
 
   componentWillReceiveProps(nextProps){
 
@@ -66,7 +73,7 @@ class TestowyModal extends Component {
   }
 
   onSubmitProject(values) {
-    this.props.actions.postNewProject(values);
+    this.props.actions.postNewProject({...values, color:this.state.color});
   }
 
 
@@ -230,6 +237,10 @@ class TestowyModal extends Component {
                   name="name"
                   component={this.renderField}
                 />
+                 <SketchPicker
+        color={ this.state.color }
+        onChangeComplete={ this.handleChangeComplete }
+      />
             
                 <button type="submit" className="btn btn-primary"> Add</button>
 

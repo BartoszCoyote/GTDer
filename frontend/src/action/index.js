@@ -14,7 +14,8 @@ import {
   DELETE_TASK,
   FETCH_TASK7,
   FETCH_USER,
-  POST_PROJECT
+  POST_PROJECT,
+  DELETE_PROJECT
 } from './types';
 
 export function signinUser(values, history) {
@@ -285,6 +286,31 @@ export function postNewProject(values) {
     })
       .then(response => {
         dispatch({ type: POST_PROJECT });
+        window.location.reload();
+
+
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+
+export function deleteProject(id) {
+  let token = localStorage.getItem('token');
+  return async (dispatch) => {
+    axios({
+      method: 'delete',
+      url: 'http://localhost:8080/api/project/' + id,
+      headers: {
+        withCredentials: true,
+        'Authorization': 'Bearer ' + token
+      }
+
+    })
+      .then(response => {
+        dispatch({ type: DELETE_PROJECT });
         window.location.reload();
 
 

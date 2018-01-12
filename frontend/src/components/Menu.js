@@ -30,6 +30,14 @@ class Menu extends Component {
     this.props.getProjects();
   }
 
+  deleteConfirm(value) {
+    if (window.confirm("Are you sure u want to delete task?") === true)
+    this.props.deleteProject(value)
+    else console.log("nie delete")
+
+
+}
+
   renderTasks() {
     return _.map(this.props.project, project => {
       return (
@@ -38,6 +46,20 @@ class Menu extends Component {
           primaryText={project.name}
           leftIcon={<ActionGrade />}
           onClick={this.klik.bind(this, project.name)}
+          primaryTogglesNestedList={true}
+
+          initiallyOpen={false}
+          nestedItems={[
+            <ListItem
+            rightAvatar={<ActionDelete />}
+            onClick={this.deleteConfirm.bind(this,project.id)}
+
+            key={project.id}
+            primaryText="Delete Project"
+            />
+          ]}
+          
+          
 
         />
       );

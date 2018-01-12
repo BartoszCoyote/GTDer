@@ -10,7 +10,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
   Project findById(Long id);
 
-  void deleteById(String id);
+  void deleteById(Long id);
 
   boolean existsByName(String name);
 }

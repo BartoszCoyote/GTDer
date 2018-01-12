@@ -28,6 +28,9 @@ public class Project {
   @Column(name = "NAME")
   private String name;
 
+  @Column(name = "COLOR")
+  private String color;
+
   @JsonIgnore
   @OneToMany(mappedBy = "project", cascade = CascadeType.PERSIST, orphanRemoval = true)
   private List<Task> tasks;

@@ -9,7 +9,7 @@ public class ProjectMapper {
     ProjectDto dto = new ProjectDto();
     dto.setId(project.getId());
     dto.setName(project.getName());
-
+    dto.setColor(project.getColor());
     return dto;
   }
 
@@ -22,6 +22,7 @@ public class ProjectMapper {
       project = new Project();
     }
     project.setName(dto.getName());
+    project.setColor(dto.getColor());
     return project;
   }
 }
