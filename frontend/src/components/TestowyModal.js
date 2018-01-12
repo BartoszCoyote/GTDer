@@ -60,6 +60,8 @@ class TestowyModal extends Component {
 
 
   onSubmit(values) {
+    console.log("onSubmit")
+    console.log(values)
     this.props.actions.postNewTask(this.props.history, { ...values, selectedDay: this.state.selectedDay });
   }
 
@@ -102,7 +104,9 @@ class TestowyModal extends Component {
         <label>{field.label}</label>
         <select
           className="form-control"
-          type="text">
+          type="text"
+          {...field.input}>
+
         {this.renderOptions()}
         </select>
       </div>
