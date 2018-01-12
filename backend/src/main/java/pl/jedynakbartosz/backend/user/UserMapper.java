@@ -16,7 +16,9 @@ public class UserMapper {
     dto.setUsername(user.getUsername());
     dto.setFirstname(user.getFirstname());
     dto.setLastname(user.getLastname());
-    return dto;
+    dto.setPassword(passwordEncoder.encode(user.getPassword()));
+    dto.setEmail(user.getEmail());
+   return dto;
   }
 
   User map(UserDto dto) {

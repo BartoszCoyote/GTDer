@@ -9,12 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.jedynakbartosz.backend.task.TaskDto;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,6 +32,14 @@ public class UserController {
     return userService.findAll();
   }
 
+  @PutMapping("/{id}")
+  UserDto update(@PathVariable("id") Long id, @Valid @RequestBody UserDto dto) {
+    return userService.update(id, dto);
+  }
+
   @GetMapping("/who")
   String who(Principal principal){ return userService.who(principal);}
+
+  @GetMapping("/me")
+  UserDto me(Principal principal){ return userService.me(principal);}
 }

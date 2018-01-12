@@ -15,7 +15,9 @@ import {
   FETCH_TASK7,
   FETCH_USER,
   POST_PROJECT,
-  DELETE_PROJECT
+  DELETE_PROJECT,
+  FETCH_ME,
+  UPDATE_USER
 } from './types';
 
 export function signinUser(values, history) {
@@ -312,6 +314,55 @@ export function deleteProject(id) {
       .then(response => {
         dispatch({ type: DELETE_PROJECT });
         window.location.reload();
+
+
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+export function getMe() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/user/me', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_ME,
+          payload: response
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+
+export function editUser(id, history, values) {
+  let token = localStorage.getItem('token');
+  console.log(history)
+  return async (dispatch) => {
+    axios({
+      method: 'put',
+      url: 'http://localhost:8080/api/user/' + id,
+      data: values,
+      headers: {
+        withCredentials: true,
+        'Authorization': 'Bearer ' + token
+      }
+
+    })
+      .then(response => {
+        dispatch({ type: UPDATE_USER });
+        history.goBack();
 
 
       })

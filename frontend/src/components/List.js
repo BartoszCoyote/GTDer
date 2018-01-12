@@ -1,46 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 import * as actions from '../action';
 import './List.css';
+import { Link } from 'react-router-dom';
 
 
 class List extends Component {
+
+
   componentDidMount() {
-    this.props.getTasks('Inbox');
+    var xd = 'Inbox';
+    this.props.getTasks(xd);
   }
 
+
+
   renderTasks() {
-  	const { task } = this.props;
-    
-    if (!task || !Array.isArray(task)) {
-    	return null;
-    }
-    
-    return task.map(({ id, project, name, description }) => {
-    	const style = { color: project.color };
-      
+    return _.map(this.props.task, task => {
+  
       return (
-        <li className="list-group-item" key={id}>
-          <Link to={`task/${id}`}>
-            <span className="pull-xs-right" style={style}>
-              { name }
-            </span>
-            <strong style={style}>
-              { description }
-            </strong>
+        <li className="list-group-item" key={task.id}>
+          <Link to={"task/" + task.id}>
+            <span className="pull-xs-right">{task.name} </span>
+            <strong>{task.description} </strong>
+            
+
           </Link>
+
         </li>
       );
     });
   }
 
   render() {
+   
     return (
       <div className="task-list">
         <ul className="list-group">
-          { this.renderTasks() }
+          {this.renderTasks()}
         </ul>
       </div>
     );

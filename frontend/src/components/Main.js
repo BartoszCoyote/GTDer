@@ -10,6 +10,8 @@ import NotFound from './NotFound';
 import RequireAuth from './auth/Require_auth';
 import NoRequireAuth from '../components/auth/No_require_auth.js';
 import TaskShow from './TaskShow';
+import UserShow from './UserShow';
+
 
 const Main = () => (
   <main>
@@ -20,6 +22,8 @@ const Main = () => (
       <Route exact path='/signup' component={SignUp} />
       <Route exact path='/dashboard' component={RequireAuth(Dashboard)} />
       <Route exact path="/task/:id" component={RequireAuth(TaskShow)} />
+      <Route exact path="/me" component={RequireAuth(UserShow)} />
+
       <Route path="*" component={NotFound} />
     </Switch>
   </main>

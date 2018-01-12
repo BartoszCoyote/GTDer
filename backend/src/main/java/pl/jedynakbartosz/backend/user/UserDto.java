@@ -23,7 +23,7 @@ public class UserDto {
   @Length(min = 1, max = 500)
   private String lastname;
 
-  @NotNull
+
   @Size(min = 4, max = 100)
   private String password;
 
