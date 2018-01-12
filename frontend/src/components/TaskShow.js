@@ -97,22 +97,36 @@ class TaskShow extends Component {
 
         const { name, description } = this.state;
         return (
+            <div className="container">
+        <div className="loginForm">
             <div>
                 <div>
-                    <textarea placeholder={name} onChange={event => this.setState({ name: event.target.value })} />
+                    <div>
+                        <h2>
+                    Name:
+                    </h2>
+                    </div>
+                    <textarea placeholder={name} className="textarea" onChange={event => this.setState({ name: event.target.value })} />
 
 
 
                 </div>
-                <div>
-                    <textarea placeholder={description} onChange={event => this.setState({ description: event.target.value })} />/>
-                    <button onClick={() => this.clickSave()}>
+                <div><div>
+                    <h2>
+                    Description:
+                    </h2>
+                    </div>
+                    <textarea placeholder={description} className="textarea" onChange={event => this.setState({ description: event.target.value })} />
+                   <center>
+                    <Button className="btn btn-light" onClick={() => this.clickSave()}>
                         Save
-        </button>
-                    <Button onClick={this.close.bind(this)}>Close</Button>
-                    <Button onClick={this.deleteConfirm.bind(this)}>Delete</Button>
-
+        </Button> 
+        <Button className="btn btn-info" onClick={this.close.bind(this)}>Close</Button>
+        <Button className="btn btn-danger" onClick={this.deleteConfirm.bind(this)}>Delete</Button>
+</center>
                 </div>
+            </div >
+            </div>
             </div >
         );
     }
