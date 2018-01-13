@@ -3,17 +3,21 @@ import './TaskShow.css';
 import * as actions from '../action';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import DayPicker from 'react-day-picker';
+import 'react-day-picker/lib/style.css';
 
 class TaskShow extends Component {
 
     constructor(props) {
         super(props);
+        this.handleDayClick = this.handleDayClick.bind(this);
         this.state = {
             name: "",
             description: "",
             selectedDay: "",
             project:"",
-            current: 'EDIT'
+            current: 'EDIT',
+            day:"No selected date"
         }
     }
 
@@ -42,6 +46,14 @@ class TaskShow extends Component {
         });
     }
 
+    handleDayClick(day) {
+            console.log("handledayclick")
+            console.log(day)
+        this.setState({
+          day: day
+        });
+      }
+    
     renderFull() {
 
 
@@ -82,12 +94,13 @@ class TaskShow extends Component {
 
     clickSave() {
         this.changeComponentState('EDIT');
-        console.log("siema")
-        console.log(this.props.editTask)
+            console.log("dAY")
+            console.log(this.state.day)
         this.props.editTask(this.props.match.params.id, this.props.history, {
 
             name: this.state.name,
-            description: this.state.description
+            description: this.state.description,
+            selectedDay:this.state.day
         });
 
     }
@@ -117,6 +130,14 @@ class TaskShow extends Component {
                     </h2>
                     </div>
                     <textarea placeholder={description} className="textarea" onChange={event => this.setState({ description: event.target.value })} />
+                    <div>
+                        <center>
+                  <DayPicker
+                    selectedDays={this.state.day}
+                    onDayClick={this.handleDayClick}
+                  />
+                  </center>
+                </div>
                    <center>
                     <Button className="btn btn-light" onClick={() => this.clickSave()}>
                         Save

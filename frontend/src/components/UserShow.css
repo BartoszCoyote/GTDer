@@ -1,0 +1,47 @@
+.loginForm {
+    margin-right: 30%;
+    margin-left: 30%;
+    background-color: white;
+    border-radius: 5%;
+    margin-top: 2%;
+  }
+  
+  .container {
+    height: 100%;
+    width: 100%;
+    border-top-right-radius: 10px
+  }
+  
+  .form-group {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  
+
+  
+  #image img {
+    width: 100%;
+  }
+  
+  #image a {
+    position: absolute;
+    width: 38%;
+    height: 168px;
+  }
+  
+  .btn-primary {
+    margin-left: 40%;
+    padding: 2% 10%;
+  }
+  
+  .AccountCreate {
+    margin-top: 5%;
+    margin-left: 40%;
+  }
+  
+  .textarea {
+    width: 100%;
+    height: 70px;
+    resize: none;
+
+  }

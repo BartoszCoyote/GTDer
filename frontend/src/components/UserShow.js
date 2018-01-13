@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as actions from '../action';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
+import './UserShow.css'
 
 
 class UserShow extends Component{
@@ -51,40 +52,75 @@ class UserShow extends Component{
         });
 
     }
+    close() {
+        this.props.history.goBack();
+    }
 
     render(){
 
        
         return (
+            <div className="container">
+            <div className="loginForm">
             <div>
                 
+            <div>
+                    <h2>
+                    First name:
+                    </h2>
+                    </div>
+                
                 <div>
-                    <textarea placeholder={this.state.firstname} onChange={event => this.setState({ firstname: event.target.value })} />
+                    <textarea placeholder={this.state.firstname} className="textarea" onChange={event => this.setState({ firstname: event.target.value })} />
 
 
 
                 </div>
                 <div>
-                    <textarea placeholder={this.state.lastname} onChange={event => this.setState({ lastname: event.target.value })}/>
+                    <h2>
+                    Last name:
+                    </h2>
+                    </div>
+                <div>
+                    <textarea placeholder={this.state.lastname} className="textarea" onChange={event => this.setState({ lastname: event.target.value })}/>
                    
                 </div>
                 <div>
-                    <textarea placeholder={this.state.username} onChange={event => this.setState({ username: event.target.value })} />
-                   
-                </div>
-               
+                    <h2>
+                    Username:
+                    </h2>
+                    </div>
                 <div>
-                    <textarea placeholder={this.state.email} onChange={event => this.setState({ email: event.target.value })} />
+                    <textarea placeholder={this.state.username} className="textarea" onChange={event => this.setState({ username: event.target.value })} />
                    
                 </div>
                 <div>
-                    <textarea placeholder={this.state.password} onChange={event => this.setState({ password: event.target.value })} />
+                    <h2>
+                    Email:
+                    </h2>
+                    </div>
+                <div>
+                    <textarea placeholder={this.state.email} className="textarea" onChange={event => this.setState({ email: event.target.value })} />
                    
                 </div>
-                <Button onClick={() => this.clickSave()}>
+                <div>
+                    <h2>
+                    Password:
+                    </h2>
+                    </div>
+                <div>
+                    <textarea placeholder={this.state.password} className="textarea" onChange={event => this.setState({ password: event.target.value })} />
+                   
+                </div>
+                
+        <center>
+                    <Button className="btn btn-danger" onClick={() => this.clickSave()}>
                         Save
-        </Button>
+        </Button> 
+        <Button className="btn btn-info" onClick={this.close.bind(this)}>Close</Button>
+</center>
             </div >
+            </div></div>
         );
     }
 }
