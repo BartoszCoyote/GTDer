@@ -266,10 +266,10 @@ class TestowyModal extends Component {
 function validate(values) {
   const errors = {};
   if (!values.description) {
-    errors.descriptiom = 'Enter Username';
+    errors.descriptiom = 'Enter Description';
   }
   if (!values.name) {
-    errors.name = 'Enter Password';
+    errors.name = 'Enter Task Name';
   }
   return errors;
 }
