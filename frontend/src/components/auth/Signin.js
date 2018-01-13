@@ -12,9 +12,11 @@ class Signin extends Component {
   errorMessage() {
     if (this.props.errorMessage) {
       return (
+        <center>
         <div className="info-red">
           {this.props.errorMessage}
         </div>
+        </center>
       );
     }
   }
