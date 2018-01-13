@@ -6,7 +6,7 @@ class Dashboard extends Component {
     return (
       <div id="main">
         <div id="inner">
-          404
+        <iframe src="https://giphy.com/embed/YyKPbc5OOTSQE" width="780" height="780" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/gustavo-art-kidmograph-gustavo-YyKPbc5OOTSQE"></a></p>
         </div>
       </div>
     );
