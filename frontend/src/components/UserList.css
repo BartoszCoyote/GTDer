@@ -1,0 +1,26 @@
+.task-list {
+
+    width:85%;
+  
+    height:100%;
+    overflow: scroll;
+  
+    position: fixed;
+    top: 5%;
+    left:24%;
+  
+  
+  
+  }
+  
+  .list-group-item{
+    background-color: transparent;
+    background-color: ghostwhite;
+    margin-right: 40%;
+  }
+  
+  .projecttask
+  {
+    position: relative;
+    margin-left:70%;
+  }

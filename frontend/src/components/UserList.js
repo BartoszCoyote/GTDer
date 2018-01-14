@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { Button } from 'react-bootstrap';
 
 import * as actions from '../action';
-import './List.css';
+import './UserList.css';
 import { Link } from 'react-router-dom';
 
 
