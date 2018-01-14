@@ -31,7 +31,11 @@ else console.log("nie siema")}
     }
 
     return _.map(admin, admin => {
+      if( admin.id === 1){
+        return null;
+      }
       return (
+     
         <div>
         <li className="list-group-item" key={admin.id}>
           
