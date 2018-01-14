@@ -1,96 +1,68 @@
-import React, {  Component } from 'react';
 
-import FullCalendar from 'fullcalendar'
+import React, { Component } from 'react';
+import BigCalendar from 'react-big-calendar'
+import moment from 'moment'
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import * as actions from '../action';
+import { connect } from 'react-redux';
+import './Calendar.css';
+import { Button } from 'react-bootstrap';
 
-const generateRandomDate = (start, end) =>
-new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
+let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 
 class Calendar extends Component {
 
 
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      events: [
-        {
-          title: 'Default event',
-          start: new Date(),
-          // plus 30 minutes
-          end: new Date(Date.now + 30 * 60 * 1000),
-        }
-      ],
+  componentWillMount()
+  {
+    this.props.getAllTasks()
 
-      date: new Date(),
-    };
-
-
-    this.onEventSelect = this.onEventSelect.bind(this);
-    this.goToSomeDate = this.goToSomeDate.bind(this);
-  }
-
-  onEventSelect(start, end) {
-    const events = this.state.events;
-
-    const newEventsSource = events.concat({
-      title: `Event #${events.length}`,
-      // moment object to simple date object
-      start: start.toDate(),
-      end: end.toDate(),
-    });
-
-    this.setState({
-      events: newEventsSource,
-    });
-  }
-
-  goToSomeDate() {
-    this.setState({ date: generateRandomDate(new Date(2000, 0, 1), new Date()) });
+    
   }
 
   render() {
 
-
-
-
-    const calendarOptions = {
-      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-
-      header: false,
-
-      id: 'calendar-example',
-      defaultView: 'agendaDay',
-      defaultDate: this.state.date,
-      timezone: 'local',
-
-      editable: true,
-      droppable: true,
-      selectable: true,
-
-      slotDuration: '00:15',
-      scrollTime: '08:00',
-      columnFormat: 'ddd DD/MM',
-      displayTime: true,
-      firstDay: 1,
-
-      select: this.onEventSelect,
-
-      // please, use funciton events source for reactivity support
-    //   events: (start, end, timezone, callback) => {
-    //     callback(this.state.events);
-    //   },
+    const { task } = this.props;
+    
+    if (!task || !Array.isArray(task)) {
+    	return null;
     }
+    console.log(task)
 
-    return(
-      <div className="row">
-        <div className="calendar">
-          <button onClick={this.goToSomeDate}>Go To Date</button>
+    const events = task.map(({ id, name, selectedDay }) => ({
+      id,
+      title: name,
+      start: new Date(selectedDay),
+      end: new Date(selectedDay)
+    }));
 
-          <FullCalendar options={calendarOptions} />
-        </div>
-      </div>
-    );
+    console.log(events)
+   return(
+
+    <div className="App">
+               <Button className="btn btn-primary btn-lg" onClick={() => { this.props.history.goBack(); }}>Back</Button>
+
+    <BigCalendar
+   events={events}
+   views={allViews}
+   step={60}
+   defaultDate={new Date(2018, 1, 0)}
+   />
+
+   </div>      
+    )
   }
 }
+BigCalendar.setLocalizer(BigCalendar.momentLocalizer(moment))
 
-export default Calendar;
+
+
+function mapStateToProps(state) {
+  return { task: state.task };
+}
+
+
+
+export default connect(mapStateToProps, actions)(Calendar);

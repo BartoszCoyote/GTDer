@@ -17,7 +17,8 @@ import {
   POST_PROJECT,
   DELETE_PROJECT,
   FETCH_ME,
-  UPDATE_USER
+  UPDATE_USER,
+  FETCH_ALL_TASKS
 } from './types';
 
 export function signinUser(values, history) {
@@ -368,6 +369,31 @@ export function editUser(id, history, values) {
         history.goBack();
 
 
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+
+export function getAllTasks() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/task', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_ALL_TASKS,
+          payload: response
+          
+        })
+        ;
       })
       .catch(e => {
         console.log(e);

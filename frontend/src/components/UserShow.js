@@ -66,7 +66,7 @@ class UserShow extends Component{
                 
             <div>
                     <h2>
-                    First name:
+                     First name:
                     </h2>
                     </div>
                 

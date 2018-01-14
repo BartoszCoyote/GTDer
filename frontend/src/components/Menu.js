@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { List, ListItem } from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
+import { withRouter } from 'react-router'
 
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
@@ -74,6 +75,8 @@ class Menu extends Component {
 
 
   render() {
+    console.log("Menuuu")
+    console.log(this.props)
     return (
       <MuiThemeProvider>
         <div>
@@ -82,6 +85,8 @@ class Menu extends Component {
               <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} onClick={this.klik.bind(this, "Inbox")} />
               <ListItem primaryText="Today" leftIcon={<ContentSend />} onClick={this.today.bind(this)} />
               <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} onClick={this.weekdays.bind(this)} />
+              <ListItem primaryText="Calendar" leftIcon={<ContentSend />} onClick={() => { this.props.history.push("/calendar"); }} />
+
               <ListItem
                 primaryText="Projects"
                 leftIcon={<ContentInbox />}
@@ -131,4 +136,4 @@ function mapStateToProps(state) {
   return { project: state.project };
 }
 
-export default connect(mapStateToProps, actions)(Menu);
+export default withRouter(connect(mapStateToProps, actions)(Menu));

@@ -21,10 +21,11 @@ const Main = () => (
       <Route exact path='/signin' component={NoRequireAuth(SignIn)} />
       <Route exact path='/signout' component={SignOut} />
       <Route exact path='/signup' component={SignUp} />
+      <Route exact path="/calendar" component={RequireAuth(Calendar)} />
+
       <Route exact path='/dashboard' component={RequireAuth(Dashboard)} />
       <Route exact path="/task/:id" component={RequireAuth(TaskShow)} />
       <Route exact path="/me" component={RequireAuth(UserShow)} />
-      <Route exact path="/calendar" component={RequireAuth(Calendar)} />
 
       <Route path="*" component={NotFound} />
     </Switch>
