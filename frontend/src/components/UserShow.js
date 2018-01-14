@@ -109,7 +109,7 @@ class UserShow extends Component{
                     </h2>
                     </div>
                 <div>
-                    <textarea placeholder={this.state.password} className="textarea" onChange={event => this.setState({ password: event.target.value })} />
+                    <textarea placeholder="Insert new password here" className="textarea" onChange={event => this.setState({ password: event.target.value })} />
                    
                 </div>
                 

@@ -18,6 +18,7 @@ class List extends Component {
 
 
   renderTasks() {
+    
   	const { task } = this.props;
     
     if (!task || !Array.isArray(task)) {

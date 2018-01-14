@@ -1,4 +1,4 @@
-import { FETCH_USER ,UNAUTH_USER,FETCH_ME,UPDATE_USER} from '../action/types';
+import { FETCH_USER ,UNAUTH_USER,FETCH_ME,UPDATE_USER,FETCH_ALL_USER} from '../action/types';
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -9,7 +9,7 @@ export default function (state = {}, action) {
    case UPDATE_USER:
    return state;
    case UNAUTH_USER:
-      return { state, authenticated: false };
+      return state;
    
    default:
       return state;

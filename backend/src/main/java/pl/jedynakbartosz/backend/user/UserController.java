@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.jedynakbartosz.backend.task.TaskDto;
 
@@ -28,6 +29,7 @@ public class UserController {
   }
 
   @GetMapping
+  @PreAuthorize("hasRole('ADMIN')")
   List<UserDto> findAll() {
     return userService.findAll();
   }
@@ -39,6 +41,12 @@ public class UserController {
 
   @GetMapping("/who")
   String who(Principal principal){ return userService.who(principal);}
+
+  @DeleteMapping("/{id}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  void delete(@PathVariable("id") Long id) {
+    userService.delete(id);
+  }
 
   @GetMapping("/me")
   UserDto me(Principal principal){ return userService.me(principal);}

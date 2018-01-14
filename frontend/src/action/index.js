@@ -18,7 +18,9 @@ import {
   DELETE_PROJECT,
   FETCH_ME,
   UPDATE_USER,
-  FETCH_ALL_TASKS
+  FETCH_ALL_TASKS,
+  FETCH_ALL_USER,
+  DELETE_USER
 } from './types';
 
 export function signinUser(values, history) {
@@ -367,9 +369,11 @@ export function editUser(id, history, values) {
       .then(response => {
         dispatch({ type: UPDATE_USER });
         history.goBack();
+        localStorage.clear();
 
 
       })
+
       .catch(e => {
         console.log(e);
       });
@@ -392,8 +396,56 @@ export function getAllTasks() {
           type: FETCH_ALL_TASKS,
           payload: response
           
-        })
-        ;
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+
+export function getAllUsers() {
+  let token = localStorage.getItem('token');
+  let config = {
+    headers: {
+      withCredentials: true,
+      'Authorization': 'Bearer ' + token
+    }
+  };
+  return async (dispatch) => {
+    axios.get('http://localhost:8080/api/user', config)
+      .then(response => {
+        dispatch({
+          type: FETCH_ALL_USER,
+          payload: response
+          
+        });
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+}
+
+
+export function deleteUser(id) {
+  let token = localStorage.getItem('token');
+  return async (dispatch) => {
+    axios({
+      method: 'delete',
+      url: 'http://localhost:8080/api/user/' + id,
+      headers: {
+        withCredentials: true,
+        'Authorization': 'Bearer ' + token
+      }
+
+    })
+      .then(response => {
+        dispatch({ type: DELETE_USER });
+        window.location.reload();
+
+
       })
       .catch(e => {
         console.log(e);

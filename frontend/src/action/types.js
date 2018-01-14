@@ -16,3 +16,5 @@ export const DELETE_PROJECT = 'delete_project'
 export const FETCH_ME = 'fetch_me'
 export const UPDATE_USER = 'update_user'
 export const FETCH_ALL_TASKS = 'fetch_all_tasks'
+export const FETCH_ALL_USER = 'fetch_all_user';
+export const DELETE_USER = 'delete_user'

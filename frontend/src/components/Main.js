@@ -12,6 +12,7 @@ import NoRequireAuth from '../components/auth/No_require_auth.js';
 import TaskShow from './TaskShow';
 import UserShow from './UserShow';
 import Calendar from './Calendar'
+import UserList from './UserList';
 
 
 const Main = () => (
@@ -22,7 +23,7 @@ const Main = () => (
       <Route exact path='/signout' component={SignOut} />
       <Route exact path='/signup' component={SignUp} />
       <Route exact path="/calendar" component={RequireAuth(Calendar)} />
-
+      <Route exact path="/admin/users" component={RequireAuth(UserList)} />
       <Route exact path='/dashboard' component={RequireAuth(Dashboard)} />
       <Route exact path="/task/:id" component={RequireAuth(TaskShow)} />
       <Route exact path="/me" component={RequireAuth(UserShow)} />
