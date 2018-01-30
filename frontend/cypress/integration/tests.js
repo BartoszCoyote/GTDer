@@ -94,7 +94,12 @@ describe('GTDer', function () {
     cy.get('.ButtonModal').contains('Add task').click()
     cy.get('.btn-default').click()
     cy.get('.ButtonModal').contains('Add task').click()
-    cy.get('.form-group').contains('Name:').first().get('input').type('admin')
+    cy.get('.form-group').get('input').first().type('nazwa')
+    cy.get('.form-group').get('input').eq(1).type('nazwa')
+    cy.get('.btn-primary').click()
+
+
+
 
 
 
