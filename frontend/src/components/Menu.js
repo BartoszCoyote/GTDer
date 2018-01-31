@@ -18,11 +18,11 @@ class Menu extends Component {
 
 
 
-  today(){
+  today() {
     this.props.getTasksToday();
   }
-  weekdays(){
-      this.props.getTask7days();
+  weekdays() {
+    this.props.getTask7days();
   }
   klik(value) {
     this.props.getTasks(value);
@@ -33,41 +33,42 @@ class Menu extends Component {
 
   deleteConfirm(value) {
     if (window.confirm("Are you sure u want to delete task?") === true)
-    this.props.deleteProject(value)
+      this.props.deleteProject(value)
     else console.log("nie delete")
 
 
-}
+  }
 
   renderTasks() {
     return _.map(this.props.project, project => {
-      if(project.id !==1 && project.id !==2){
-      return (
-        
-        <ListItem
-          key={project.id}
-          primaryText={project.name}
-          leftIcon={<ActionGrade />}
-          onClick={this.klik.bind(this, project.name)}
-          primaryTogglesNestedList={true}
-
-          initiallyOpen={false}
-          nestedItems={[
+      if (project.id !== 1 && project.id !== 2) {
+        return (
+          <div className="projectMenu">
             <ListItem
-            rightAvatar={<ActionDelete />}
-            onClick={this.deleteConfirm.bind(this,project.id)}
+              key={project.id}
+              primaryText={project.name}
+              leftIcon={<ActionGrade />}
+              onClick={this.klik.bind(this, project.name)}
+              primaryTogglesNestedList={true}
 
-            key={project.id}
-            primaryText="Delete Project"
+              initiallyOpen={false}
+              nestedItems={[
+                <ListItem
+                  rightAvatar={<ActionDelete />}
+                  onClick={this.deleteConfirm.bind(this, project.id)}
+
+                  key={project.id}
+                  primaryText="Delete Project"
+                />
+              ]}
+
+
+
             />
-          ]}
-          
-          
+          </div>
+        );
+      }
 
-        />
-      );
-    }
-    
     });
   }
 
@@ -83,19 +84,24 @@ class Menu extends Component {
           <div className="menu">
             <List>
               <ListItem primaryText="Inbox" leftIcon={<ContentDrafts />} onClick={this.klik.bind(this, "Inbox")} />
-              <ListItem primaryText="Today" leftIcon={<ContentSend />} onClick={this.today.bind(this)} />
-              <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} onClick={this.weekdays.bind(this)} />
+              <div className="today">
+                <ListItem primaryText="Today" leftIcon={<ContentSend />} onClick={this.today.bind(this)} />
+              </div>
+              <div className="thisweek">
+                <ListItem primaryText="Next 7 Days" leftIcon={<ContentSend />} onClick={this.weekdays.bind(this)} />
+              </div>
               <ListItem primaryText="Calendar" leftIcon={<ContentSend />} onClick={() => { this.props.history.push("/calendar"); }} />
-
-              <ListItem
-                primaryText="Projects"
-                leftIcon={<ContentInbox />}
-                initiallyOpen={false}
-                primaryTogglesNestedList={true}
-                nestedItems={[
-                  this.renderTasks()
-                ]}
-              />
+              <div className="projectClick">
+                <ListItem
+                  primaryText="Projects"
+                  leftIcon={<ContentInbox />}
+                  initiallyOpen={false}
+                  primaryTogglesNestedList={true}
+                  nestedItems={[
+                    this.renderTasks()
+                  ]}
+                />
+              </div>
               {/* <ListItem
                 primaryText="Labels"
                 leftIcon={<ContentInbox />}

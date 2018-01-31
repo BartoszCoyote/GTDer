@@ -177,4 +177,73 @@ describe('GTDer', function () {
 
 
   })
+
+  it('Add Task today works', function () {
+    cy.get('.center').click()
+    cy.contains('Sign in').click()
+
+    cy.location().should(function (location) {
+      expect(location.href).to.eq('http://localhost:3000/signin')
+    })
+
+    cy.get('.form-group').contains('Username:').get('input[type=text]').type('admin')
+
+    cy.get('.form-group').contains('Password:').get('input[type=password]').type('admin')
+    cy.get('.btn-primary').click()
+    cy.get('.ButtonModal').contains('Add task')
+    cy.get('.ButtonModal').contains('Add project')
+    cy.get('.ButtonModal').contains('Add task').click()
+    cy.get('.btn-default').click()
+    cy.get('.ButtonModal').contains('Add task').click()
+    cy.get('.form-group').get('input').first().type('nazwa')
+    cy.get('.form-group').get('input').eq(1).type('opis')
+    cy.get('.DayPicker-Day--today').click()
+    cy.get('.btn-primary').click()
+    cy.get('.today').click()
+
+    cy.contains('Sign out').click()
+    cy.get('h1').contains('Good Bye')
+
+
+
+
+
+
+
+  })
+  it('Add Task this week works', function () {
+    cy.get('.center').click()
+    cy.contains('Sign in').click()
+
+    cy.location().should(function (location) {
+      expect(location.href).to.eq('http://localhost:3000/signin')
+    })
+
+    cy.get('.form-group').contains('Username:').get('input[type=text]').type('admin')
+
+    cy.get('.form-group').contains('Password:').get('input[type=password]').type('admin')
+    cy.get('.btn-primary').click()
+    cy.get('.ButtonModal').contains('Add task')
+    cy.get('.ButtonModal').contains('Add project')
+    cy.get('.ButtonModal').contains('Add task').click()
+    cy.get('.btn-default').click()
+    cy.get('.ButtonModal').contains('Add task').click()
+    cy.get('.form-group').get('input').first().type('nazwa')
+    cy.get('.form-group').get('input').eq(1).type('opis')
+    cy.get('.DayPicker-Day--today').next().click()
+    cy.get('.btn-primary').click()
+    cy.get('.thisweek').click()
+
+    cy.contains('Sign out').click()
+    cy.get('h1').contains('Good Bye')
+
+
+
+
+
+
+
+  })
+
+
 })
