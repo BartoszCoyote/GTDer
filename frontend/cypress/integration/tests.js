@@ -95,10 +95,80 @@ describe('GTDer', function () {
     cy.get('.btn-default').click()
     cy.get('.ButtonModal').contains('Add task').click()
     cy.get('.form-group').get('input').first().type('nazwa')
-    cy.get('.form-group').get('input').eq(1).type('nazwa')
+    cy.get('.form-group').get('input').eq(1).type('opis')
     cy.get('.btn-primary').click()
 
+    cy.contains('Sign out').click()
+    cy.get('h1').contains('Good Bye')
 
+
+
+
+
+
+
+  })
+  it('Delete Task works', function () {
+    cy.get('.center').click()
+    cy.contains('Sign in').click()
+
+    cy.location().should(function (location) {
+      expect(location.href).to.eq('http://localhost:3000/signin')
+    })
+
+    cy.get('.form-group').contains('Username:').get('input[type=text]').type('admin')
+
+    cy.get('.form-group').contains('Password:').get('input[type=password]').type('admin')
+    cy.get('.btn-primary').click()
+    cy.get('.ButtonModal').contains('Add task')
+    cy.get('.ButtonModal').contains('Add project')
+    cy.get('.ButtonModal').contains('Add task').click()
+    cy.get('.btn-default').click()
+    cy.get('.ButtonModal').contains('Add task').click()
+    cy.get('.form-group').get('input').first().type('nazwa')
+    cy.get('.form-group').get('input').eq(1).type('opis')
+    cy.get('.btn-primary').click()
+    cy.wait(500)
+
+    cy.get('.list-group-item').first().click()
+    cy.wait(500)
+
+    cy.get('.btn-danger').click()
+
+    cy.contains('Sign out').click()
+    cy.get('h1').contains('Good Bye')
+
+
+
+
+
+
+
+
+  })
+  it('Add Project works', function () {
+    cy.get('.center').click()
+    cy.contains('Sign in').click()
+
+    cy.location().should(function (location) {
+      expect(location.href).to.eq('http://localhost:3000/signin')
+    })
+
+    cy.get('.form-group').contains('Username:').get('input[type=text]').type('admin')
+
+    cy.get('.form-group').contains('Password:').get('input[type=password]').type('admin')
+    cy.get('.btn-primary').click()
+    cy.get('.ButtonModal').contains('Add task')
+    cy.get('.ButtonModal').contains('Add project')
+    cy.get('.ButtonModal').contains('Add project').click()
+    cy.get('.btn-default').click()
+    cy.get('.ButtonModal').contains('Add project').click()
+    cy.get('.form-group').get('input').first().type('project')
+    cy.get('.btn-primary').click()
+    cy.get('.projectClick').click()
+    cy.get('.projectClick').contains('project').click()
+    cy.contains('Sign out').click()
+    cy.get('h1').contains('Good Bye')
 
 
 
